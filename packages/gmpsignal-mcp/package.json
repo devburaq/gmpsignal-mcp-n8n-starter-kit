@@ -1,0 +1,44 @@
+{
+    "name": "gmpsignal-mcp",
+    "version": "1.0.0",
+    "description": "Official Model Context Protocol (MCP) Server & CLI Launcher for the GMPSignal 40-Actor Enterprise Data, Quantitative Crypto, Prediction Markets, B2B Enrichment, KYB/Sanctions, Cybersecurity & Regulatory Suite on Apify.",
+    "type": "module",
+    "main": "./index.mjs",
+    "bin": {
+        "gmpsignal-mcp": "./bin/cli.mjs"
+    },
+    "files": [
+        "bin/",
+        "index.mjs",
+        "README.md"
+    ],
+    "scripts": {
+        "start": "node ./bin/cli.mjs",
+        "list": "node ./bin/cli.mjs --list",
+        "print-config": "node ./bin/cli.mjs --print-config"
+    },
+    "keywords": [
+        "mcp",
+        "model-context-protocol",
+        "apify",
+        "claude-desktop",
+        "cursor",
+        "ai-agents",
+        "dexscreener",
+        "polymarket",
+        "kalshi",
+        "b2b-enrichment",
+        "kyb-sanctions",
+        "cisa-kev",
+        "epss",
+        "shopify-scraper",
+        "sec-edgar",
+        "gmpsignal"
+    ],
+    "author": "GMPSignal <https://apify.com/gmpsignal>",
+    "license": "MIT",
+    "homepage": "https://gmpsignal.com",
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}

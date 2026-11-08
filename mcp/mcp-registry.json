@@ -1,0 +1,76 @@
+{
+    "registryVersion": "2026.11",
+    "publisher": {
+        "username": "gmpsignal",
+        "displayName": "GMPSignal",
+        "storeUrl": "https://apify.com/gmpsignal",
+        "websiteUrl": "https://gmpsignal.com",
+        "mcpGatewayEndpoint": "https://mcp.apify.com"
+    },
+    "suites": [
+        {
+            "suiteId": "crypto-quant-aml",
+            "title": "Crypto, DeFi, OrderBook Arbitrage & Wallet AML Suite",
+            "actors": [
+                "gmpsignal/dex-token-scanner-security-auditor",
+                "gmpsignal/crypto-orderbook-arbitrage-scanner",
+                "gmpsignal/multichain-wallet-aml-risk-screener",
+                "gmpsignal/defi-yield-tvl-stablecoin-monitor",
+                "gmpsignal/prediction-markets-polymarket-kalshi-scanner",
+                "gmpsignal/turkey-crypto-exchange-prices"
+            ]
+        },
+        {
+            "suiteId": "b2b-ecommerce-vc",
+            "title": "B2B Lead Enrichment, Shopify Intelligence & VC Deal-Flow Suite",
+            "actors": [
+                "gmpsignal/b2b-company-techstack-contacts-enricher",
+                "gmpsignal/shopify-global-store-products-scraper",
+                "gmpsignal/startup-vc-dealflow-yc-github-radar",
+                "gmpsignal/german-jobs-scraper"
+            ]
+        },
+        {
+            "suiteId": "compliance-cyber-science",
+            "title": "Global KYB/Sanctions, CISA KEV Cybersecurity, Science & Regulatory Suite",
+            "actors": [
+                "gmpsignal/global-sanctions-pep-gleif-kyb-screener",
+                "gmpsignal/cyber-cve-kev-epss-vulnerability-scanner",
+                "gmpsignal/academic-patent-research-citation-intelligence",
+                "gmpsignal/sec-edgar-filings",
+                "gmpsignal/fda-warning-letters-scraper",
+                "gmpsignal/fda-recalls-enforcement",
+                "gmpsignal/eu-ted-tenders-scraper",
+                "gmpsignal/global-product-recalls"
+            ]
+        },
+        {
+            "suiteId": "seismic-macro-regional",
+            "title": "Seismic Monitoring, Central Bank FX & European/Balkan/Regional Markets Suite",
+            "actors": [
+                "gmpsignal/earthquake-monitor-usgs-emsc-afad",
+                "gmpsignal/europe-mediterranean-earthquakes-emsc-official-data",
+                "gmpsignal/turkey-earthquakes-afad-official-data",
+                "gmpsignal/islamic-prayer-times-worldwide-monthly-calendars",
+                "gmpsignal/njuskalo-scraper",
+                "gmpsignal/bolha-scraper",
+                "gmpsignal/olx-ba-scraper",
+                "gmpsignal/halooglasi-serbia-scraper",
+                "gmpsignal/kupujemprodajem-scraper",
+                "gmpsignal/pazar3-merrjep-balkan-scraper",
+                "gmpsignal/tcmb-exchange-rates-official-turkish-central-bank-fx",
+                "gmpsignal/turkey-gold-prices",
+                "gmpsignal/turkey-weather-mgm-official",
+                "gmpsignal/turkey-on-duty-pharmacies-nobetci-eczane-daily",
+                "gmpsignal/turkey-fuel-prices-81-provinces-daily-benzin-motorin-lpg",
+                "gmpsignal/turkey-car-rental-prices-city-airport-index",
+                "gmpsignal/turkey-hotels-explorer-ratings-amenities",
+                "gmpsignal/turkey-domestic-flight-prices",
+                "gmpsignal/eksi-sozluk-scraper-entries-trending",
+                "gmpsignal/turkey-greek-islands-ferry-schedules",
+                "gmpsignal/turkey-bus-routes-prices",
+                "gmpsignal/hepsiemlak-scraper-turkey-real-estate-listings"
+            ]
+        }
+    ]
+}

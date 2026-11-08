@@ -1,0 +1,94 @@
+{
+  "name": "GMPSignal - DEX Token Scanner & Rugpull Security Auditor Alert",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger-1",
+      "name": "Every 30 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/gmpsignal~dex-token-scanner-security-auditor/run-sync-get-dataset-items",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "={{ $env.APIFY_TOKEN }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"mode\": \"trending\",\n  \"minLiquidityUsd\": 25000,\n  \"runSecurityAudit\": true,\n  \"maxItems\": 25\n}"
+      },
+      "id": "apify-dex-scanner-2",
+      "name": "Run GMPSignal DEX Scanner & Auditor",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.riskLevel }}",
+              "rightValue": "SAFE",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "filter-safe-tokens-3",
+      "name": "Filter Audited SAFE Tokens",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
+      "position": [760, 300]
+    }
+  ],
+  "connections": {
+    "Every 30 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Run GMPSignal DEX Scanner & Auditor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run GMPSignal DEX Scanner & Auditor": {
+      "main": [
+        [
+          {
+            "node": "Filter Audited SAFE Tokens",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

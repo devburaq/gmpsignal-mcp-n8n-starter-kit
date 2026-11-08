@@ -1,0 +1,53 @@
+{
+  "name": "GMPSignal - B2B Domain Tech Stack, DNS & Contacts CRM Enrichment",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "enrich-b2b-domains",
+        "responseMode": "lastNode"
+      },
+      "id": "webhook-trigger-1",
+      "name": "Inbound Domains Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/gmpsignal~b2b-company-techstack-contacts-enricher/run-sync-get-dataset-items",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "={{ $env.APIFY_TOKEN }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"domains\": {{ JSON.stringify($json.domains || [\"stripe.com\", \"shopify.com\", \"hubspot.com\"]) }},\n  \"includeDnsSecurity\": true,\n  \"includeRdapWhois\": true,\n  \"maxResults\": 50\n}"
+      },
+      "id": "apify-b2b-enricher-2",
+      "name": "Run GMPSignal B2B Tech Stack Enricher",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 300]
+    }
+  ],
+  "connections": {
+    "Inbound Domains Webhook": {
+      "main": [
+        [
+          {
+            "node": "Run GMPSignal B2B Tech Stack Enricher",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

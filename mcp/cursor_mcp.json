@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "gmpsignal-apify-remote": {
+      "url": "https://mcp.apify.com?actors=gmpsignal/dex-token-scanner-security-auditor,gmpsignal/crypto-orderbook-arbitrage-scanner,gmpsignal/prediction-markets-polymarket-kalshi-scanner,gmpsignal/b2b-company-techstack-contacts-enricher,gmpsignal/global-sanctions-pep-gleif-kyb-screener,gmpsignal/cyber-cve-kev-epss-vulnerability-scanner,gmpsignal/startup-vc-dealflow-yc-github-radar,gmpsignal/academic-patent-research-citation-intelligence,gmpsignal/shopify-global-store-products-scraper",
+      "headers": {
+        "Authorization": "Bearer <YOUR_APIFY_API_TOKEN>"
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+name: Verify GMPSignal MCP, Clay, n8n & SDK Suite
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 9 * * 1'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate JSON Manifests & Workflows
+        run: |
+          node -e '
+            const fs = require("fs");
+            const files = [
+              "glama.json",
+              "mcp/claude_desktop_config.json",
+              "mcp/cursor_mcp.json",
+              "mcp/mcp-registry.json",
+              "clay/clay-enrichment-recipes.json",
+              "n8n-workflows/1-dex-token-rugpull-telegram-alert.json",
+              "n8n-workflows/2-b2b-domain-techstack-crm-enrichment.json",
+              "n8n-workflows/3-polymarket-kalshi-prediction-odds-monitor.json",
+              "n8n-workflows/4-cisa-kev-epss-secops-slack-alert.json",
+              "packages/gmpsignal-mcp/package.json"
+            ];
+            for (const f of files) {
+              JSON.parse(fs.readFileSync(f, "utf8"));
+            }
+            console.log("All 10 JSON manifests validated.");
+          '
+
+      - name: Verify Node.js & Python SDK Examples
+        run: |
+          node --check examples/nodejs-sdk-pipeline.mjs
+          node --check packages/gmpsignal-mcp/index.mjs
+          node --check packages/gmpsignal-mcp/bin/cli.mjs
+          python3 -m py_compile examples/python_ai_agent_pipeline.py
+          node packages/gmpsignal-mcp/bin/cli.mjs --list
+          node packages/gmpsignal-mcp/bin/cli.mjs --print-config --suite flagship

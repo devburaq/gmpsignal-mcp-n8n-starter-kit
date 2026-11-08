@@ -1,0 +1,110 @@
+{
+    "platform": "Clay.com HTTP API Enrichment Templates",
+    "version": "1.0.0",
+    "documentation": "Import or copy these HTTP API column settings directly into Clay.com tables to enrich B2B domains, screen corporate entities against sanctions/GLEIF LEI, extract Shopify competitor catalogs, or discover YC/GitHub startups.",
+    "recipes": [
+        {
+            "recipeId": "clay-b2b-techstack-contacts-enricher",
+            "name": "GMPSignal B2B Company Tech-Stack, Contacts & Social Enricher",
+            "actorSlug": "gmpsignal~b2b-company-techstack-contacts-enricher",
+            "method": "POST",
+            "endpoint": "https://api.apify.com/v2/acts/gmpsignal~b2b-company-techstack-contacts-enricher/run-sync-get-dataset-items?token={{APIFY_API_TOKEN}}",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "bodyTemplate": {
+                "domains": [
+                    "{{Company Domain}}"
+                ],
+                "extractContacts": true,
+                "detectTechStack": true,
+                "maxPagesPerDomain": 2,
+                "maxResults": 1
+            },
+            "outputMappings": {
+                "companyTitle": "$[0].title",
+                "emails": "$[0].emails",
+                "phones": "$[0].phones",
+                "linkedinUrl": "$[0].socialLinks.linkedin",
+                "twitterUrl": "$[0].socialLinks.twitter",
+                "detectedTechnologies": "$[0].technologies",
+                "leadReadinessScore": "$[0].leadReadinessScore"
+            }
+        },
+        {
+            "recipeId": "clay-global-sanctions-kyb-screener",
+            "name": "GMPSignal Global Sanctions, PEP & GLEIF LEI KYB Screener",
+            "actorSlug": "gmpsignal~global-sanctions-pep-gleif-kyb-screener",
+            "method": "POST",
+            "endpoint": "https://api.apify.com/v2/acts/gmpsignal~global-sanctions-pep-gleif-kyb-screener/run-sync-get-dataset-items?token={{APIFY_API_TOKEN}}",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "bodyTemplate": {
+                "entities": [
+                    "{{Company Legal Name}}"
+                ],
+                "includeGleifLei": true,
+                "includeSanctionsMatch": true,
+                "maxResults": 3
+            },
+            "outputMappings": {
+                "kybRiskLevel": "$[0].riskLevel",
+                "kybRiskScore": "$[0].riskScore",
+                "leiCode": "$[0].leiCode",
+                "jurisdiction": "$[0].jurisdiction",
+                "sanctionsFlagged": "$[0].sanctionsFlagged"
+            }
+        },
+        {
+            "recipeId": "clay-shopify-competitor-catalog-audit",
+            "name": "GMPSignal Shopify Store Products, Variants & Discount Auditor",
+            "actorSlug": "gmpsignal~shopify-global-store-products-scraper",
+            "method": "POST",
+            "endpoint": "https://api.apify.com/v2/acts/gmpsignal~shopify-global-store-products-scraper/run-sync-get-dataset-items?token={{APIFY_API_TOKEN}}",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "bodyTemplate": {
+                "stores": [
+                    "{{Shopify Store Domain}}"
+                ],
+                "maxProductsPerStore": 10,
+                "maxResults": 10
+            },
+            "outputMappings": {
+                "sampleProductTitle": "$[0].title",
+                "vendorBrand": "$[0].vendor",
+                "priceMin": "$[0].priceMin",
+                "priceMax": "$[0].priceMax",
+                "maxDiscountPercent": "$[0].maxDiscountPercent",
+                "inStock": "$[0].inStock"
+            }
+        },
+        {
+            "recipeId": "clay-yc-github-startup-dealflow",
+            "name": "GMPSignal Startup & VC Deal-Flow Radar (YC + GitHub + HN)",
+            "actorSlug": "gmpsignal~startup-vc-dealflow-yc-github-radar",
+            "method": "POST",
+            "endpoint": "https://api.apify.com/v2/acts/gmpsignal~startup-vc-dealflow-yc-github-radar/run-sync-get-dataset-items?token={{APIFY_API_TOKEN}}",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "bodyTemplate": {
+                "sources": [
+                    "yc_companies",
+                    "github_trending",
+                    "hackernews_launch"
+                ],
+                "keyword": "{{Target Industry Keyword}}",
+                "maxResults": 10
+            },
+            "outputMappings": {
+                "startupName": "$[0].name",
+                "websiteOrRepoUrl": "$[0].url",
+                "tractionScore": "$[0].tractionScore",
+                "batchOrCategory": "$[0].category"
+            }
+        }
+    ]
+}
