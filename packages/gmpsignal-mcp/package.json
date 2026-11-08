@@ -17,6 +17,13 @@
         "list": "node ./bin/cli.mjs --list",
         "print-config": "node ./bin/cli.mjs --print-config"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/devburaq/gmpsignal-mcp-n8n-starter-kit.git"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
     "keywords": [
         "mcp",
         "model-context-protocol",
