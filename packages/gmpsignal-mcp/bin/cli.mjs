@@ -4,15 +4,16 @@
  * @description Official Model Context Protocol (MCP) JSON-RPC 2.0 stdio server and CLI launcher
  * for the GMPSignal 40-Actor Enterprise Data, Quantitative Crypto, Prediction Markets,
  * B2B Enrichment, KYB/Sanctions, Cybersecurity & Regulatory Intelligence Suite on Apify.
- * Supports full offline/container introspection (initialize, tools/list, resources/list,
- * prompts/list) for Glama.ai / Smithery.ai inspections and executes live Apify Actor runs on tools/call.
+ * Exposes all 40 GMPSignal Apify Actors as strongly-typed MCP tools with zero-credential
+ * offline/container introspection (initialize, tools/list, resources/list, prompts/list)
+ * for Glama.ai and Smithery.ai inspections.
  */
 
 import readline from 'node:readline';
 import { GMPSIGNAL_SUITES, resolveActorsForSuite, buildMcpServerConfig } from '../index.mjs';
 
 /**
- * Detailed MCP Tool schemas for GMPSignal's Flagship & Regional Apify Intelligence Actors.
+ * Complete 40-Tool MCP Definitions mapping 1-to-1 to all 40 GMPSignal Apify Actors.
  * @type {Array<{name: string, actorSlug: string, description: string, inputSchema: Object}>}
  */
 const MCP_TOOL_DEFINITIONS = [
@@ -23,7 +24,7 @@ const MCP_TOOL_DEFINITIONS = [
         inputSchema: {
             type: 'object',
             properties: {
-                chainId: { type: 'string', description: 'Target blockchain network (e.g., solana, ethereum, base, arbitrum, bsc).', default: 'solana' },
+                chainId: { type: 'string', description: 'Target blockchain network (solana, ethereum, base, arbitrum, bsc).', default: 'solana' },
                 searchQuery: { type: 'string', description: 'Token symbol, name, or contract/pair address to audit.', default: 'SOL' },
                 minLiquidityUsd: { type: 'number', description: 'Minimum pool liquidity in USD.', default: 10000 },
                 maxResults: { type: 'integer', description: 'Maximum number of audited token pairs to return.', default: 15 }
@@ -67,7 +68,7 @@ const MCP_TOOL_DEFINITIONS = [
             type: 'object',
             properties: {
                 mode: { type: 'string', description: 'Query mode: yield_pools, protocol_tvl, or stablecoins.', default: 'yield_pools' },
-                chains: { type: 'array', items: { type: 'string' }, description: 'Chains to filter (e.g., Ethereum, Solana, Arbitrum, Base).', default: ['Ethereum', 'Solana'] },
+                chains: { type: 'array', items: { type: 'string' }, description: 'Chains to filter (Ethereum, Solana, Arbitrum, Base).', default: ['Ethereum', 'Solana'] },
                 minTvlUsd: { type: 'number', description: 'Minimum pool TVL in USD.', default: 1000000 },
                 maxResults: { type: 'integer', description: 'Maximum records to return.', default: 25 }
             },
@@ -180,15 +181,27 @@ const MCP_TOOL_DEFINITIONS = [
         }
     },
     {
-        name: 'sec_edgar_filings_scraper',
-        actorSlug: 'gmpsignal~sec-edgar-filings',
-        description: 'Fetch official US SEC EDGAR corporate filings (10-K, 10-Q, 8-K, Form 4 insider transactions) by ticker, CIK, or form type.',
+        name: 'global_product_recalls_monitor',
+        actorSlug: 'gmpsignal~global-product-recalls',
+        description: 'Monitor consumer product safety recalls across US CPSC, USDA FSIS, and European Safety Gate (RAPEX) alerts.',
         inputSchema: {
             type: 'object',
             properties: {
-                tickers: { type: 'array', items: { type: 'string' }, description: 'Stock tickers or CIK codes (e.g., AAPL, NVDA, MSFT).', default: ['AAPL', 'NVDA'] },
-                forms: { type: 'array', items: { type: 'string' }, description: 'SEC form types (e.g., 10-K, 10-Q, 8-K, 4).', default: ['10-K', '10-Q', '8-K'] },
-                maxResults: { type: 'integer', description: 'Maximum filings to return.', default: 25 }
+                sources: { type: 'array', items: { type: 'string' }, description: 'Recall authorities (cpsc, fsis, eu).', default: ['cpsc', 'eu'] },
+                maxResults: { type: 'integer', description: 'Maximum recall alerts to return.', default: 25 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'earthquake_monitor_usgs_emsc_afad',
+        actorSlug: 'gmpsignal~earthquake-monitor-usgs-emsc-afad',
+        description: 'Track cross-verified global and regional seismic events in real time across USGS, EMSC, and AFAD networks.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                minMagnitude: { type: 'string', description: 'Minimum Richter magnitude threshold (e.g., "3.0", "4.5").', default: '4.5' },
+                maxResults: { type: 'integer', description: 'Maximum seismic events to return.', default: 25 }
             },
             required: []
         }
@@ -220,6 +233,62 @@ const MCP_TOOL_DEFINITIONS = [
         }
     },
     {
+        name: 'pazar3_merrjep_balkan_classifieds_scraper',
+        actorSlug: 'gmpsignal~pazar3-merrjep-balkan-scraper',
+        description: 'Extract real estate, vehicles, and marketplace listings across North Macedonia (Pazar3.mk), Kosovo (MerrJep.com), and Albania (MerrJep.al).',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                country: { type: 'string', description: 'Target country code (mk, xk, al).', default: 'mk' },
+                category: { type: 'string', description: 'Category slug (cars, real-estate, electronics).', default: 'cars' },
+                maxItems: { type: 'integer', description: 'Maximum classified listings to return.', default: 25 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'turkey_real_estate_listings_scraper',
+        actorSlug: 'gmpsignal~hepsiemlak-scraper-turkey-real-estate-listings',
+        description: 'Extract residential and commercial real estate listings, square-meter pricing, and agent details across regional cities.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                city: { type: 'string', description: 'Target city slug (e.g., istanbul, ankara, izmir).', default: 'istanbul' },
+                category: { type: 'string', description: 'Listing type category slug.', default: 'sale' },
+                maxItems: { type: 'integer', description: 'Maximum property listings to return.', default: 20 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'sec_edgar_filings_scraper',
+        actorSlug: 'gmpsignal~sec-edgar-filings',
+        description: 'Fetch official US SEC EDGAR corporate filings (10-K, 10-Q, 8-K, Form 4 insider transactions) by ticker, CIK, or form type.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                tickers: { type: 'array', items: { type: 'string' }, description: 'Stock tickers or CIK codes (e.g., AAPL, NVDA, MSFT).', default: ['AAPL', 'NVDA'] },
+                forms: { type: 'array', items: { type: 'string' }, description: 'SEC form types (10-K, 10-Q, 8-K, 4).', default: ['10-K', '10-Q', '8-K'] },
+                maxResults: { type: 'integer', description: 'Maximum filings to return.', default: 25 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'german_jobs_arbeitsagentur_scraper',
+        actorSlug: 'gmpsignal~german-jobs-scraper',
+        description: 'Search official German Federal Employment Agency (Bundesagentur fuer Arbeit) job vacancies, employers, and locations.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                searchQuery: { type: 'string', description: 'Job title, skill, or profession keyword.', default: 'Software Engineer' },
+                location: { type: 'string', description: 'City or region in Germany (e.g., Berlin, Munich).', default: 'Berlin' },
+                maxResults: { type: 'integer', description: 'Maximum job listings to return.', default: 25 }
+            },
+            required: []
+        }
+    },
+    {
         name: 'fda_recalls_enforcement_monitor',
         actorSlug: 'gmpsignal~fda-recalls-enforcement',
         description: 'Query official US openFDA drug, medical device, and food recall enforcement reports.',
@@ -233,14 +302,254 @@ const MCP_TOOL_DEFINITIONS = [
         }
     },
     {
-        name: 'earthquake_monitor_usgs_emsc_afad',
-        actorSlug: 'gmpsignal~earthquake-monitor-usgs-emsc-afad',
-        description: 'Track cross-verified global and regional seismic events in real time across USGS, EMSC, and AFAD networks.',
+        name: 'njuskalo_croatia_classifieds_scraper',
+        actorSlug: 'gmpsignal~njuskalo-scraper',
+        description: 'Extract marketplace, automotive, and real estate listings from Njuskalo.hr in Croatia.',
         inputSchema: {
             type: 'object',
             properties: {
-                minMagnitude: { type: 'string', description: 'Minimum Richter magnitude threshold (e.g., "3.0", "4.5").', default: '4.5' },
-                maxResults: { type: 'integer', description: 'Maximum seismic events to return.', default: 25 }
+                query: { type: 'string', description: 'Search keyword on Njuskalo.hr.', default: 'iphone' },
+                maxItems: { type: 'integer', description: 'Maximum listings to return.', default: 25 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'bolha_slovenia_classifieds_scraper',
+        actorSlug: 'gmpsignal~bolha-scraper',
+        description: 'Extract marketplace, automotive, and real estate listings from Bolha.com in Slovenia.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                query: { type: 'string', description: 'Search keyword on Bolha.com.', default: 'macbook' },
+                maxItems: { type: 'integer', description: 'Maximum listings to return.', default: 25 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'olx_bosnia_marketplace_scraper',
+        actorSlug: 'gmpsignal~olx-ba-scraper',
+        description: 'Extract vehicles, real estate, and consumer goods listings from OLX.ba in Bosnia and Herzegovina.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                query: { type: 'string', description: 'Search keyword on OLX.ba.', default: 'golf' },
+                maxItems: { type: 'integer', description: 'Maximum listings to return.', default: 25 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'turkey_crypto_exchange_prices_monitor',
+        actorSlug: 'gmpsignal~turkey-crypto-exchange-prices',
+        description: 'Monitor TRY and USDT cryptocurrency trading pairs, 24h volume, and order book spreads across Turkish crypto exchanges (BtcTurk, Paribu).',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                quoteCurrency: { type: 'string', description: 'Quote currency filter (TRY, USDT, ALL).', default: 'TRY' },
+                maxResults: { type: 'integer', description: 'Maximum ticker records to return.', default: 50 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'halooglasi_serbia_classifieds_scraper',
+        actorSlug: 'gmpsignal~halooglasi-serbia-scraper',
+        description: 'Extract real estate, apartments, and automotive classifieds from HaloOglasi.com in Serbia.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                category: { type: 'string', description: 'Category path or keyword on HaloOglasi.', default: 'nekretnine' },
+                maxItems: { type: 'integer', description: 'Maximum listings to return.', default: 25 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'kupujemprodajem_serbia_marketplace_scraper',
+        actorSlug: 'gmpsignal~kupujemprodajem-scraper',
+        description: 'Search and extract product listings, prices, and seller details from KupujemProdajem.com in Serbia.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                keywords: { type: 'string', description: 'Search keyword on KupujemProdajem.', default: 'iphone' },
+                maxItems: { type: 'integer', description: 'Maximum listings to return.', default: 25 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'turkey_gold_and_bank_bullion_prices',
+        actorSlug: 'gmpsignal~turkey-gold-prices',
+        description: 'Fetch live Turkish gold prices (Gram, Quarter, Half, Republic, Ons) and compare buy/sell spreads across 35 commercial banks.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                includeBanks: { type: 'boolean', description: 'Include 35 bank gold buy/sell spread comparisons.', default: true }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'turkey_weather_mgm_official_forecast',
+        actorSlug: 'gmpsignal~turkey-weather-mgm-official',
+        description: 'Retrieve official Turkish State Meteorological Service (MGM) current weather observations and 5-day forecasts across 81 provinces.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                provinces: { type: 'array', items: { type: 'string' }, description: 'List of Turkish provinces (e.g., istanbul, ankara, izmir, antalya).', default: ['istanbul', 'ankara', 'izmir'] }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'europe_mediterranean_earthquakes_emsc',
+        actorSlug: 'gmpsignal~europe-mediterranean-earthquakes-emsc-official-data',
+        description: 'Fetch real-time European and Mediterranean seismic events, epicenter coordinates, depths, and magnitudes from EMSC.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                minMagnitude: { type: 'number', description: 'Minimum earthquake magnitude.', default: 2.5 },
+                maxResults: { type: 'integer', description: 'Maximum seismic events to return.', default: 30 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'islamic_prayer_times_worldwide_calendars',
+        actorSlug: 'gmpsignal~islamic-prayer-times-worldwide-monthly-calendars',
+        description: 'Calculate daily and monthly astronomical Islamic prayer times (Fajr, Sunrise, Dhuhr, Asr, Maghrib, Isha) and Qibla direction for any global city.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                city: { type: 'string', description: 'Target city name (e.g., Istanbul, London, Mecca).', default: 'Istanbul' },
+                country: { type: 'string', description: 'Target country name.', default: 'Turkey' }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'turkey_on_duty_pharmacies_directory',
+        actorSlug: 'gmpsignal~turkey-on-duty-pharmacies-nobetci-eczane-daily',
+        description: 'Find daily emergency on-duty pharmacies with addresses, phone numbers, and map coordinates across provinces and districts.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                city: { type: 'string', description: 'Province name (e.g., istanbul, ankara, izmir).', default: 'istanbul' },
+                district: { type: 'string', description: 'Optional district filter (e.g., kadikoy, besiktas).', default: '' }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'tcmb_official_central_bank_fx_rates',
+        actorSlug: 'gmpsignal~tcmb-exchange-rates-official-turkish-central-bank-fx',
+        description: 'Fetch official Central Bank (TCMB) daily foreign exchange buying, selling, bank-note, and cross rates.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                currencies: { type: 'array', items: { type: 'string' }, description: 'ISO currency codes (e.g., USD, EUR, GBP, CHF, JPY).', default: ['USD', 'EUR', 'GBP'] }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'turkey_fuel_prices_81_provinces_daily',
+        actorSlug: 'gmpsignal~turkey-fuel-prices-81-provinces-daily-benzin-motorin-lpg',
+        description: 'Retrieve daily retail gasoline, diesel, and autogas (LPG) pump prices across all 81 provinces.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                provinces: { type: 'array', items: { type: 'string' }, description: 'Provinces to query (e.g., istanbul, ankara, izmir).', default: ['istanbul', 'ankara', 'izmir'] }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'turkey_car_rental_prices_index',
+        actorSlug: 'gmpsignal~turkey-car-rental-prices-city-airport-index',
+        description: 'Compare daily car rental fleet prices, vehicle classes, transmission types, and supplier ratings across airports and cities.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                locations: { type: 'array', items: { type: 'string' }, description: 'Pickup locations or airports (e.g., istanbul, antalya).', default: ['istanbul'] }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'turkey_hotels_explorer_ratings_amenities',
+        actorSlug: 'gmpsignal~turkey-hotels-explorer-ratings-amenities',
+        description: 'Extract hotel nightly rates, guest review scores, star ratings, board types, and amenities across Turkish destinations.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                cities: { type: 'array', items: { type: 'string' }, description: 'Target destination cities (e.g., istanbul, antalya, bodrum).', default: ['istanbul'] },
+                maxHotelsPerCity: { type: 'integer', description: 'Maximum hotels to return per city.', default: 25 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'turkey_earthquakes_afad_official_feed',
+        actorSlug: 'gmpsignal~turkey-earthquakes-afad-official-data',
+        description: 'Retrieve official AFAD (Disaster and Emergency Management Authority) real-time earthquake records across Turkey and neighboring regions.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                minMagnitude: { type: 'number', description: 'Minimum earthquake magnitude filter.', default: 2.0 },
+                maxResults: { type: 'integer', description: 'Maximum earthquake events to return.', default: 30 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'turkey_domestic_flight_prices_aggregator',
+        actorSlug: 'gmpsignal~turkey-domestic-flight-prices',
+        description: 'Compare domestic and regional airline ticket fares, departure/arrival times, baggage allowances, and carriers (THY, Pegasus, AJet).',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                origin: { type: 'string', description: 'Origin city or airport slug (e.g., istanbul).', default: 'istanbul' },
+                destination: { type: 'string', description: 'Destination city or airport slug (e.g., izmir, antalya).', default: 'izmir' }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'social_community_forum_entries_scraper',
+        actorSlug: 'gmpsignal~eksi-sozluk-scraper-entries-trending',
+        description: 'Extract trending discussion topics, user entries, favorite counts, and community sentiment data.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                includeTrending: { type: 'boolean', description: 'Scrape current trending topics.', default: true },
+                maxEntriesPerTopic: { type: 'integer', description: 'Maximum entries per topic.', default: 20 }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'turkey_greek_islands_ferry_schedules',
+        actorSlug: 'gmpsignal~turkey-greek-islands-ferry-schedules',
+        description: 'Fetch maritime ferry timetables, operators, sailing durations, and ticket prices across Aegean, Marmara, and Greek Island routes.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                routes: { type: 'array', items: { type: 'string' }, description: 'Route slugs (e.g., yenikapi-mudanya, bodrum-kos).', default: ['yenikapi-mudanya'] }
+            },
+            required: []
+        }
+    },
+    {
+        name: 'turkey_bus_routes_and_ticket_prices',
+        actorSlug: 'gmpsignal~turkey-bus-routes-prices',
+        description: 'Extract intercity bus schedules, coach operators, departure/arrival terminals, seat configurations, and TRY ticket prices across Turkey.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                routes: { type: 'array', items: { type: 'string' }, description: 'Intercity route pairs (e.g., istanbul-ankara, izmir-antalya).', default: ['istanbul-ankara'] }
             },
             required: []
         }
@@ -332,7 +641,7 @@ async function handleJsonRpcMessage(message) {
             },
             serverInfo: {
                 name: 'gmpsignal-mcp-server',
-                version: '1.1.0'
+                version: '1.2.0'
             }
         });
         return;
