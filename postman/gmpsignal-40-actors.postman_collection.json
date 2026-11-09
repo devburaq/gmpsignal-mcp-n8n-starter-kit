@@ -1,0 +1,1947 @@
+{
+  "info": {
+    "_postman_id": "065d98a0-76eb-4e35-9c4b-5c5941030a28",
+    "name": "GMPSignal — 40 Enterprise Data, Crypto, Quant, B2B, KYB, Cyber & Regulatory APIs",
+    "description": "Official Postman Collection v2.1 for all 40 production-grade Apify Actors published by GMPSignal (@gmpsignal). Set your {{APIFY_TOKEN}} collection variable to execute any endpoint synchronously and receive structured JSON dataset items.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "APIFY_TOKEN",
+      "value": "<YOUR_APIFY_API_TOKEN>",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Flagship Global Crypto, Quant, B2B, KYB, Cyber & R&D APIs (16)",
+      "item": [
+        {
+          "name": "1. dex-token-scanner-security-auditor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chainId\": \"solana\",\n  \"searchQuery\": \"SOL\",\n  \"minLiquidityUsd\": 10000,\n  \"maxResults\": 15\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~dex-token-scanner-security-auditor/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~dex-token-scanner-security-auditor",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Scan DEX tokens across Solana, Ethereum, Base, Arbitrum, and BSC using DexScreener and GoPlus Security APIs to detect honeypots, mint/freeze authority, buy/sell taxes, and liquidity locks."
+          },
+          "response": []
+        },
+        {
+          "name": "2. crypto-orderbook-arbitrage-scanner",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbols\": [\n    \"BTCUSDT\",\n    \"ETHUSDT\"\n  ],\n  \"exchanges\": [\n    \"binance\",\n    \"bybit\",\n    \"kraken\",\n    \"coinbase\"\n  ],\n  \"maxResults\": 20\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~crypto-orderbook-arbitrage-scanner/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~crypto-orderbook-arbitrage-scanner",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Analyze live Level-2 order book depth, $10k/$50k/$100k execution slippage, and cross-exchange arbitrage spreads across Binance, Bybit, Kraken, Coinbase, OKX, and KuCoin."
+          },
+          "response": []
+        },
+        {
+          "name": "3. multichain-wallet-aml-risk-screener",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addresses\": [\n    \"0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045\"\n  ],\n  \"chains\": [\n    \"ethereum\"\n  ],\n  \"maxTransactions\": 10\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~multichain-wallet-aml-risk-screener/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~multichain-wallet-aml-risk-screener",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Screen EVM and Solana wallet addresses for native balances, transaction velocity, mixer exposure, sanctions flags, and automated AML risk scores."
+          },
+          "response": []
+        },
+        {
+          "name": "4. defi-yield-tvl-stablecoin-monitor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mode\": \"yield_pools\",\n  \"chains\": [\n    \"Ethereum\",\n    \"Solana\"\n  ],\n  \"minTvlUsd\": 1000000,\n  \"maxResults\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~defi-yield-tvl-stablecoin-monitor/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~defi-yield-tvl-stablecoin-monitor",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Monitor DeFi yield farming APY pools, multi-chain protocol TVL momentum, and stablecoin peg health using live DeFiLlama intelligence."
+          },
+          "response": []
+        },
+        {
+          "name": "5. prediction-markets-polymarket-kalshi-scanner",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sources\": [\n    \"polymarket\",\n    \"kalshi\"\n  ],\n  \"keyword\": \"\",\n  \"minVolumeUsd\": 1000,\n  \"maxResults\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~prediction-markets-polymarket-kalshi-scanner/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~prediction-markets-polymarket-kalshi-scanner",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Fetch real-time implied probabilities, yes/no odds, trading volume, liquidity, and arbitrage opportunities across Polymarket, Kalshi, and Manifold Markets."
+          },
+          "response": []
+        },
+        {
+          "name": "6. b2b-company-techstack-contacts-enricher",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domains\": [\n    \"apify.com\",\n    \"stripe.com\"\n  ],\n  \"extractContacts\": true,\n  \"detectTechStack\": true,\n  \"maxResults\": 10\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~b2b-company-techstack-contacts-enricher/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~b2b-company-techstack-contacts-enricher",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Enrich B2B company domains with decision-maker emails, phone numbers, social profiles, 38+ technology stack fingerprints, MX/SPF/DMARC security posture, and RDAP registration data."
+          },
+          "response": []
+        },
+        {
+          "name": "7. global-sanctions-pep-gleif-kyb-screener",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entities\": [\n    \"Stripe Inc\",\n    \"OpenAI\"\n  ],\n  \"includeGleifLei\": true,\n  \"includeSanctionsMatch\": true,\n  \"maxResults\": 15\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~global-sanctions-pep-gleif-kyb-screener/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~global-sanctions-pep-gleif-kyb-screener",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Screen corporate entities and individuals against GLEIF Legal Entity Identifiers (LEI), OFAC/UN/EU global sanctions lists, and PEP compliance databases."
+          },
+          "response": []
+        },
+        {
+          "name": "8. cyber-cve-kev-epss-vulnerability-scanner",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mode\": \"cisa_kev\",\n  \"vendorFilter\": \"\",\n  \"minEpssScore\": 0.05,\n  \"maxResults\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~cyber-cve-kev-epss-vulnerability-scanner/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~cyber-cve-kev-epss-vulnerability-scanner",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Correlate CISA Known Exploited Vulnerabilities (KEV), FIRST.org 30-day EPSS exploitation probabilities, and NVD CVSS v3 severity scores for DevSecOps prioritization."
+          },
+          "response": []
+        },
+        {
+          "name": "9. startup-vc-dealflow-yc-github-radar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sources\": [\n    \"yc_companies\",\n    \"github_trending\",\n    \"hackernews_launch\"\n  ],\n  \"keyword\": \"\",\n  \"maxResults\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~startup-vc-dealflow-yc-github-radar/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~startup-vc-dealflow-yc-github-radar",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Discover high-traction startups and open-source developer tools across Y Combinator (YC), GitHub Trending repositories, and Hacker News launches."
+          },
+          "response": []
+        },
+        {
+          "name": "10. academic-patent-research-citation-intelligence",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"autonomous AI agents\",\n  \"sources\": [\n    \"openalex\",\n    \"semantic_scholar\",\n    \"arxiv\"\n  ],\n  \"minYear\": 2024,\n  \"maxResults\": 20\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~academic-patent-research-citation-intelligence/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~academic-patent-research-citation-intelligence",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Search peer-reviewed scientific papers, citation velocity, DOI metadata, and open-access PDFs across OpenAlex, Semantic Scholar, Crossref, and arXiv."
+          },
+          "response": []
+        },
+        {
+          "name": "11. shopify-global-store-products-scraper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stores\": [\n    \"allbirds.com\",\n    \"kyliecosmetics.com\"\n  ],\n  \"searchKeyword\": \"\",\n  \"onlyInStock\": false,\n  \"maxProductsPerStore\": 15,\n  \"maxResults\": 30\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~shopify-global-store-products-scraper/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~shopify-global-store-products-scraper",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Extract complete product catalogs, SKU variants, stock availability, compare-at prices, and discount percentages from any global Shopify store domain."
+          },
+          "response": []
+        },
+        {
+          "name": "12. global-product-recalls-monitor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sources\": [\n    \"cpsc\",\n    \"eu\"\n  ],\n  \"maxResults\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~global-product-recalls-monitor/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~global-product-recalls-monitor",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Monitor consumer product safety recalls across US CPSC, USDA FSIS, and European Safety Gate (RAPEX) alerts."
+          },
+          "response": []
+        },
+        {
+          "name": "13. earthquake-monitor-usgs-emsc-afad",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"minMagnitude\": \"4.5\",\n  \"maxResults\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~earthquake-monitor-usgs-emsc-afad/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~earthquake-monitor-usgs-emsc-afad",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Track cross-verified global and regional seismic events in real time across USGS, EMSC, and AFAD networks."
+          },
+          "response": []
+        },
+        {
+          "name": "14. eu-ted-public-tenders-scraper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"searchQuery\": \"software\",\n  \"maxResults\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~eu-ted-public-tenders-scraper/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~eu-ted-public-tenders-scraper",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Search European Union Tenders Electronic Daily (TED) public procurement notices, CPV codes, contracting authorities, and official PDF/HTML links."
+          },
+          "response": []
+        },
+        {
+          "name": "15. fda-warning-letters-compliance-scraper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"searchKeyword\": \"\",\n  \"maxResults\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~fda-warning-letters-compliance-scraper/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~fda-warning-letters-compliance-scraper",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Monitor US FDA pharmaceutical, medical device, biologics, and food GMP inspection warning letters and violation categories."
+          },
+          "response": []
+        },
+        {
+          "name": "16. pazar3-merrjep-balkan-classifieds-scraper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"country\": \"mk\",\n  \"category\": \"cars\",\n  \"maxItems\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~pazar3-merrjep-balkan-classifieds-scraper/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~pazar3-merrjep-balkan-classifieds-scraper",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Extract real estate, vehicles, and marketplace listings across North Macedonia (Pazar3.mk), Kosovo (MerrJep.com), and Albania (MerrJep.al)."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. European, Balkan & Regional Market Intelligence APIs (24)",
+      "item": [
+        {
+          "name": "17. turkey-real-estate-listings-scraper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"city\": \"istanbul\",\n  \"category\": \"sale\",\n  \"maxItems\": 20\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~turkey-real-estate-listings-scraper/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~turkey-real-estate-listings-scraper",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Extract residential and commercial real estate listings, square-meter pricing, and agent details across regional cities."
+          },
+          "response": []
+        },
+        {
+          "name": "18. sec-edgar-filings-scraper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tickers\": [\n    \"AAPL\",\n    \"NVDA\"\n  ],\n  \"forms\": [\n    \"10-K\",\n    \"10-Q\",\n    \"8-K\"\n  ],\n  \"maxResults\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~sec-edgar-filings-scraper/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~sec-edgar-filings-scraper",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Fetch official US SEC EDGAR corporate filings (10-K, 10-Q, 8-K, Form 4 insider transactions) by ticker, CIK, or form type."
+          },
+          "response": []
+        },
+        {
+          "name": "19. german-jobs-arbeitsagentur-scraper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"searchQuery\": \"Software Engineer\",\n  \"location\": \"Berlin\",\n  \"maxResults\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~german-jobs-arbeitsagentur-scraper/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~german-jobs-arbeitsagentur-scraper",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Search official German Federal Employment Agency (Bundesagentur fuer Arbeit) job vacancies, employers, and locations."
+          },
+          "response": []
+        },
+        {
+          "name": "20. fda-recalls-enforcement-monitor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": \"drug\",\n  \"maxResults\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~fda-recalls-enforcement-monitor/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~fda-recalls-enforcement-monitor",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Query official US openFDA drug, medical device, and food recall enforcement reports."
+          },
+          "response": []
+        },
+        {
+          "name": "21. njuskalo-croatia-classifieds-scraper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"iphone\",\n  \"maxItems\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~njuskalo-croatia-classifieds-scraper/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~njuskalo-croatia-classifieds-scraper",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Extract marketplace, automotive, and real estate listings from Njuskalo.hr in Croatia."
+          },
+          "response": []
+        },
+        {
+          "name": "22. bolha-slovenia-classifieds-scraper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"macbook\",\n  \"maxItems\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~bolha-slovenia-classifieds-scraper/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~bolha-slovenia-classifieds-scraper",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Extract marketplace, automotive, and real estate listings from Bolha.com in Slovenia."
+          },
+          "response": []
+        },
+        {
+          "name": "23. olx-bosnia-marketplace-scraper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"golf\",\n  \"maxItems\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~olx-bosnia-marketplace-scraper/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~olx-bosnia-marketplace-scraper",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Extract vehicles, real estate, and consumer goods listings from OLX.ba in Bosnia and Herzegovina."
+          },
+          "response": []
+        },
+        {
+          "name": "24. turkey-crypto-exchange-prices-monitor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quoteCurrency\": \"TRY\",\n  \"maxResults\": 50\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~turkey-crypto-exchange-prices-monitor/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~turkey-crypto-exchange-prices-monitor",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Monitor TRY and USDT cryptocurrency trading pairs, 24h volume, and order book spreads across Turkish crypto exchanges (BtcTurk, Paribu)."
+          },
+          "response": []
+        },
+        {
+          "name": "25. halooglasi-serbia-classifieds-scraper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": \"nekretnine\",\n  \"maxItems\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~halooglasi-serbia-classifieds-scraper/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~halooglasi-serbia-classifieds-scraper",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Extract real estate, apartments, and automotive classifieds from HaloOglasi.com in Serbia."
+          },
+          "response": []
+        },
+        {
+          "name": "26. kupujemprodajem-serbia-marketplace-scraper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"keywords\": \"iphone\",\n  \"maxItems\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~kupujemprodajem-serbia-marketplace-scraper/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~kupujemprodajem-serbia-marketplace-scraper",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Search and extract product listings, prices, and seller details from KupujemProdajem.com in Serbia."
+          },
+          "response": []
+        },
+        {
+          "name": "27. turkey-gold-and-bank-bullion-prices",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"includeBanks\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~turkey-gold-and-bank-bullion-prices/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~turkey-gold-and-bank-bullion-prices",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Fetch live Turkish gold prices (Gram, Quarter, Half, Republic, Ons) and compare buy/sell spreads across 35 commercial banks."
+          },
+          "response": []
+        },
+        {
+          "name": "28. turkey-weather-mgm-official-forecast",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"provinces\": [\n    \"istanbul\",\n    \"ankara\",\n    \"izmir\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~turkey-weather-mgm-official-forecast/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~turkey-weather-mgm-official-forecast",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Retrieve official Turkish State Meteorological Service (MGM) current weather observations and 5-day forecasts across 81 provinces."
+          },
+          "response": []
+        },
+        {
+          "name": "29. europe-mediterranean-earthquakes-emsc",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"minMagnitude\": 2.5,\n  \"maxResults\": 30\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~europe-mediterranean-earthquakes-emsc/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~europe-mediterranean-earthquakes-emsc",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Fetch real-time European and Mediterranean seismic events, epicenter coordinates, depths, and magnitudes from EMSC."
+          },
+          "response": []
+        },
+        {
+          "name": "30. islamic-prayer-times-worldwide-calendars",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"city\": \"Istanbul\",\n  \"country\": \"Turkey\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~islamic-prayer-times-worldwide-calendars/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~islamic-prayer-times-worldwide-calendars",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Calculate daily and monthly astronomical Islamic prayer times (Fajr, Sunrise, Dhuhr, Asr, Maghrib, Isha) and Qibla direction for any global city."
+          },
+          "response": []
+        },
+        {
+          "name": "31. turkey-on-duty-pharmacies-directory",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"city\": \"istanbul\",\n  \"district\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~turkey-on-duty-pharmacies-directory/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~turkey-on-duty-pharmacies-directory",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Find daily emergency on-duty pharmacies with addresses, phone numbers, and map coordinates across provinces and districts."
+          },
+          "response": []
+        },
+        {
+          "name": "32. tcmb-official-central-bank-fx-rates",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currencies\": [\n    \"USD\",\n    \"EUR\",\n    \"GBP\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~tcmb-official-central-bank-fx-rates/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~tcmb-official-central-bank-fx-rates",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Fetch official Central Bank (TCMB) daily foreign exchange buying, selling, bank-note, and cross rates."
+          },
+          "response": []
+        },
+        {
+          "name": "33. turkey-fuel-prices-81-provinces-daily",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"provinces\": [\n    \"istanbul\",\n    \"ankara\",\n    \"izmir\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~turkey-fuel-prices-81-provinces-daily/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~turkey-fuel-prices-81-provinces-daily",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Retrieve daily retail gasoline, diesel, and autogas (LPG) pump prices across all 81 provinces."
+          },
+          "response": []
+        },
+        {
+          "name": "34. turkey-car-rental-prices-index",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locations\": [\n    \"istanbul\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~turkey-car-rental-prices-index/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~turkey-car-rental-prices-index",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Compare daily car rental fleet prices, vehicle classes, transmission types, and supplier ratings across airports and cities."
+          },
+          "response": []
+        },
+        {
+          "name": "35. turkey-hotels-explorer-ratings-amenities",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cities\": [\n    \"istanbul\"\n  ],\n  \"maxHotelsPerCity\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~turkey-hotels-explorer-ratings-amenities/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~turkey-hotels-explorer-ratings-amenities",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Extract hotel nightly rates, guest review scores, star ratings, board types, and amenities across Turkish destinations."
+          },
+          "response": []
+        },
+        {
+          "name": "36. turkey-earthquakes-afad-official-feed",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"minMagnitude\": 2,\n  \"maxResults\": 30\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~turkey-earthquakes-afad-official-feed/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~turkey-earthquakes-afad-official-feed",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Retrieve official AFAD (Disaster and Emergency Management Authority) real-time earthquake records across Turkey and neighboring regions."
+          },
+          "response": []
+        },
+        {
+          "name": "37. turkey-domestic-flight-prices-aggregator",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"origin\": \"istanbul\",\n  \"destination\": \"izmir\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~turkey-domestic-flight-prices-aggregator/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~turkey-domestic-flight-prices-aggregator",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Compare domestic and regional airline ticket fares, departure/arrival times, baggage allowances, and carriers (THY, Pegasus, AJet)."
+          },
+          "response": []
+        },
+        {
+          "name": "38. social-community-forum-entries-scraper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"includeTrending\": true,\n  \"maxEntriesPerTopic\": 20\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~social-community-forum-entries-scraper/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~social-community-forum-entries-scraper",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Extract trending discussion topics, user entries, favorite counts, and community sentiment data."
+          },
+          "response": []
+        },
+        {
+          "name": "39. turkey-greek-islands-ferry-schedules",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"routes\": [\n    \"yenikapi-mudanya\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~turkey-greek-islands-ferry-schedules/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~turkey-greek-islands-ferry-schedules",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Fetch maritime ferry timetables, operators, sailing durations, and ticket prices across Aegean, Marmara, and Greek Island routes."
+          },
+          "response": []
+        },
+        {
+          "name": "40. turkey-bus-routes-and-ticket-prices",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{APIFY_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"routes\": [\n    \"istanbul-ankara\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.apify.com/v2/acts/gmpsignal~turkey-bus-routes-and-ticket-prices/run-sync-get-dataset-items?token={{APIFY_TOKEN}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "apify",
+                "com"
+              ],
+              "path": [
+                "v2",
+                "acts",
+                "gmpsignal~turkey-bus-routes-and-ticket-prices",
+                "run-sync-get-dataset-items"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{APIFY_TOKEN}}"
+                }
+              ]
+            },
+            "description": "Extract intercity bus schedules, coach operators, departure/arrival terminals, seat configurations, and TRY ticket prices across Turkey."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

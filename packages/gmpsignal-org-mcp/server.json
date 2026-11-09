@@ -3,7 +3,7 @@
     "name": "io.github.devburaq/gmpsignal-mcp-server",
     "title": "GMPSignal 40-Actor Enterprise Intelligence Suite",
     "description": "40 real-time Apify tools for Crypto, Prediction Markets, B2B Enrichment, KYB, Cyber & R&D.",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "websiteUrl": "https://devburaq.github.io/gmpsignal-portal/",
     "repository": {
         "url": "https://github.com/devburaq/gmpsignal-mcp-n8n-starter-kit",
@@ -13,7 +13,7 @@
         {
             "registryType": "npm",
             "identifier": "@gmpsignal/mcp-server",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "transport": {
                 "type": "stdio"
             },
@@ -30,7 +30,7 @@
         {
             "registryType": "npm",
             "identifier": "gmpsignal-mcp",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "transport": {
                 "type": "stdio"
             },
