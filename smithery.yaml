@@ -1,29 +1,31 @@
 # Smithery.ai MCP Server Configuration for GMPSignal 40-Actor Intelligence Suite
+build:
+  dockerfile: Dockerfile
+  dockerBuildPath: .
 startCommand:
   type: stdio
   configSchema:
     type: object
-    required:
-      - apifyToken
+    required: []
     properties:
       apifyToken:
         type: string
-        description: Your Apify API Token from https://console.apify.com/settings/integrations
-      actors:
+        description: Your Apify API Token from https://console.apify.com/settings/integrations (required for live tool execution; optional for tool discovery)
+        default: ""
+      suite:
         type: string
-        description: Comma-separated list of GMPSignal Apify Actor slugs to expose as MCP tools
-        default: "gmpsignal/dex-token-scanner-security-auditor,gmpsignal/crypto-orderbook-arbitrage-scanner,gmpsignal/multichain-wallet-aml-risk-screener,gmpsignal/defi-yield-tvl-stablecoin-monitor,gmpsignal/prediction-markets-polymarket-kalshi-scanner,gmpsignal/b2b-company-techstack-contacts-enricher,gmpsignal/global-sanctions-pep-gleif-kyb-screener,gmpsignal/cyber-cve-kev-epss-vulnerability-scanner,gmpsignal/startup-vc-dealflow-yc-github-radar,gmpsignal/academic-patent-research-citation-intelligence,gmpsignal/shopify-global-store-products-scraper,gmpsignal/sec-edgar-filings,gmpsignal/fda-warning-letters-scraper,gmpsignal/eu-ted-tenders-scraper,gmpsignal/earthquake-monitor-usgs-emsc-afad"
+        description: GMPSignal Actor suite preset (flagship, crypto, b2b, compliance, regional, all)
+        default: "all"
   commandFunction:
     |-
     (config) => ({
-      command: 'npx',
+      command: 'node',
       args: [
-        '-y',
-        '@apify/actors-mcp-server',
-        '--actors',
-        config.actors || 'gmpsignal/dex-token-scanner-security-auditor,gmpsignal/crypto-orderbook-arbitrage-scanner,gmpsignal/multichain-wallet-aml-risk-screener,gmpsignal/defi-yield-tvl-stablecoin-monitor,gmpsignal/prediction-markets-polymarket-kalshi-scanner,gmpsignal/b2b-company-techstack-contacts-enricher,gmpsignal/global-sanctions-pep-gleif-kyb-screener,gmpsignal/cyber-cve-kev-epss-vulnerability-scanner,gmpsignal/startup-vc-dealflow-yc-github-radar,gmpsignal/academic-patent-research-citation-intelligence,gmpsignal/shopify-global-store-products-scraper'
+        'packages/gmpsignal-mcp/bin/cli.mjs',
+        '--suite',
+        config.suite || 'all'
       ],
       env: {
-        APIFY_TOKEN: config.apifyToken
+        APIFY_TOKEN: config.apifyToken || ''
       }
     })

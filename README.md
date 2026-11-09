@@ -2,6 +2,8 @@
 
 [![NPM @gmpsignal/mcp-server](https://img.shields.io/npm/v/@gmpsignal/mcp-server?label=%40gmpsignal%2Fmcp-server&color=0ea5e9)](https://www.npmjs.com/package/@gmpsignal/mcp-server)
 [![NPM gmpsignal-mcp](https://img.shields.io/npm/v/gmpsignal-mcp?label=gmpsignal-mcp&color=6366f1)](https://www.npmjs.com/package/gmpsignal-mcp)
+[![devburaq/gmpsignal-mcp-n8n-starter-kit MCP server](https://glama.ai/mcp/servers/devburaq/gmpsignal-mcp-n8n-starter-kit/badges/score.svg)](https://glama.ai/mcp/servers/devburaq/gmpsignal-mcp-n8n-starter-kit)
+[![smithery badge](https://smithery.ai/badge/@devburaq/gmpsignal-mcp-n8n-starter-kit)](https://smithery.ai/server/@devburaq/gmpsignal-mcp-n8n-starter-kit)
 [![Verify MCP Suite](https://github.com/devburaq/gmpsignal-mcp-n8n-starter-kit/actions/workflows/verify-mcp-suite.yml/badge.svg)](https://github.com/devburaq/gmpsignal-mcp-n8n-starter-kit/actions)
 [![Apify Store Publisher](https://img.shields.io/badge/Apify_Store-40_Actors_%28%40gmpsignal%29-10b981)](https://apify.com/gmpsignal)
 [![Live API & MCP Portal](https://img.shields.io/badge/Live_Portal-Interactive_Catalog_%26_MCP_Builder-f59e0b)](https://devburaq.github.io/gmpsignal-portal/)
@@ -13,7 +15,7 @@ Connect real-time **On-Chain Crypto & DeFi**, **Prediction Markets (Polymarket/K
 
 - **Interactive 40-Actor Catalog & MCP Config Builder:** [https://devburaq.github.io/gmpsignal-portal/](https://devburaq.github.io/gmpsignal-portal/)
 - **Apify Store Profile (`@gmpsignal`):** [https://apify.com/gmpsignal](https://apify.com/gmpsignal)
-- **NPM Organization Package:** [`@gmpsignal/mcp-server`](https://www.npmjs.com/package/@gmpsignal/mcp-server) (`v1.0.0`)
+- **NPM Organization Package:** [`@gmpsignal/mcp-server`](https://www.npmjs.com/package/@gmpsignal/mcp-server) (`v1.3.0`)
 - **AI / LLM Index (`llms.txt` & `llms-full.txt`):** [llms.txt](https://devburaq.github.io/gmpsignal-portal/llms.txt) · [llms-full.txt](https://devburaq.github.io/gmpsignal-portal/llms-full.txt)
 
 ---
@@ -69,7 +71,8 @@ Copy [`mcp/claude_desktop_config.json`](./mcp/claude_desktop_config.json) or [`m
 }
 ```
 
-### MCP Directory Manifests (`Smithery`, `Glama`, `PulseMCP`)
+### MCP Directory Manifests (`Anthropic Registry`, `Smithery`, `Glama`, `PulseMCP`)
+- [`server.json`](./server.json) — Official **Anthropic / Model Context Protocol Registry** manifest (`io.github.devburaq/gmpsignal-mcp-server`).
 - [`smithery.yaml`](./smithery.yaml) — Official **Smithery.ai** stdio & config schema manifest.
 - [`glama.json`](./glama.json) — Official **Glama.ai** MCP Server specification.
 - [`mcp/mcp-registry.json`](./mcp/mcp-registry.json) — Complete **40-Actor Suite Registry** organized into 4 intelligence verticals.
