@@ -48,7 +48,30 @@ Available `--suite` presets:
 - `regional` *(22 Seismic, Central Bank FX, Balkan Classifieds, and Regional Mobility Actors)*
 - `all` *(All 40 GMPSignal Actors)*
 
-### Option B: Direct `@apify/actors-mcp-server` Configuration
+### Option B: Official Docker Container (`ghcr.io`)
+
+```json
+{
+  "mcpServers": {
+    "gmpsignal-docker": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "APIFY_TOKEN",
+        "ghcr.io/devburaq/gmpsignal-mcp-n8n-starter-kit:latest"
+      ],
+      "env": {
+        "APIFY_TOKEN": "<YOUR_APIFY_API_TOKEN>"
+      }
+    }
+  }
+}
+```
+
+### Option C: Direct `@apify/actors-mcp-server` Configuration
 
 Copy [`mcp/claude_desktop_config.json`](./mcp/claude_desktop_config.json) or [`mcp/cursor_mcp.json`](./mcp/cursor_mcp.json):
 
