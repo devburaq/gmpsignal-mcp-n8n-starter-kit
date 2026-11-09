@@ -1,12 +1,54 @@
-# GMPSignal — Apify AI Agent, MCP Server, Clay & n8n Automation Starter Kit
+# GMPSignal — 40 Enterprise Data, Crypto, Quant, B2B, KYB, Cyber & Regulatory APIs (MCP Server, Clay, n8n & SDK)
 
-Official integration starter kit for the **40 production-grade Apify Actors** built by **`gmpsignal`**. Connect real-time **On-Chain Crypto & DeFi**, **Prediction Markets (Polymarket/Kalshi)**, **B2B Domain & Tech Stack Enrichment**, **Global Corporate KYB & OFAC/UN Sanctions**, **CISA KEV & EPSS Cybersecurity**, **YC Startup DealFlow**, **OpenAlex Scientific R&D**, **Global Shopify E-Commerce**, **US/EU Regulatory Filings**, and **Balkan/Turkish Market Intelligence** directly into **Claude Desktop, Cursor, Windsurf, Smithery, Glama, Clay.com, n8n, Make, LangChain, and Node.js**.
+[![NPM @gmpsignal/mcp-server](https://img.shields.io/npm/v/@gmpsignal/mcp-server?label=%40gmpsignal%2Fmcp-server&color=0ea5e9)](https://www.npmjs.com/package/@gmpsignal/mcp-server)
+[![NPM gmpsignal-mcp](https://img.shields.io/npm/v/gmpsignal-mcp?label=gmpsignal-mcp&color=6366f1)](https://www.npmjs.com/package/gmpsignal-mcp)
+[![Verify MCP Suite](https://github.com/devburaq/gmpsignal-mcp-n8n-starter-kit/actions/workflows/verify-mcp-suite.yml/badge.svg)](https://github.com/devburaq/gmpsignal-mcp-n8n-starter-kit/actions)
+[![Apify Store Publisher](https://img.shields.io/badge/Apify_Store-40_Actors_%28%40gmpsignal%29-10b981)](https://apify.com/gmpsignal)
+[![Live API & MCP Portal](https://img.shields.io/badge/Live_Portal-Interactive_Catalog_%26_MCP_Builder-f59e0b)](https://devburaq.github.io/gmpsignal-portal/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+
+Official Model Context Protocol (**MCP**) Server, **Clay.com** HTTP API enrichment templates, **n8n** workflows, and **Python / Node.js SDK** starter kit for the **40 production-grade Apify Actors** built by **[`gmpsignal`](https://apify.com/gmpsignal)**.
+
+Connect real-time **On-Chain Crypto & DeFi**, **Prediction Markets (Polymarket/Kalshi)**, **B2B Domain & Tech Stack Enrichment**, **Global Corporate KYB & OFAC/UN Sanctions**, **CISA KEV & EPSS Cybersecurity**, **YC Startup DealFlow**, **OpenAlex Scientific R&D**, **Global Shopify E-Commerce**, **US/EU Regulatory Filings**, and **Balkan/Turkish Market Intelligence** directly into **Claude Desktop, Cursor, Windsurf, Smithery, Glama, Clay.com, n8n, Make, LangChain, and Node.js**.
+
+- **Interactive 40-Actor Catalog & MCP Config Builder:** [https://devburaq.github.io/gmpsignal-portal/](https://devburaq.github.io/gmpsignal-portal/)
+- **Apify Store Profile (`@gmpsignal`):** [https://apify.com/gmpsignal](https://apify.com/gmpsignal)
+- **NPM Organization Package:** [`@gmpsignal/mcp-server`](https://www.npmjs.com/package/@gmpsignal/mcp-server) (`v1.0.0`)
+- **AI / LLM Index (`llms.txt` & `llms-full.txt`):** [llms.txt](https://devburaq.github.io/gmpsignal-portal/llms.txt) · [llms-full.txt](https://devburaq.github.io/gmpsignal-portal/llms-full.txt)
 
 ---
 
-## 1. Quick Start: Claude Desktop & Cursor MCP Integration
+## 1. Quick Start: Claude Desktop, Cursor & Windsurf MCP Integration
 
-Copy [`mcp/claude_desktop_config.json`](./mcp/claude_desktop_config.json) into your `claude_desktop_config.json` (or [`.cursor/mcp.json`](./mcp/cursor_mcp.json)) and replace `<YOUR_APIFY_API_TOKEN>` with your Apify API token:
+### Option A: One-Line Official NPM Launcher (`@gmpsignal/mcp-server`)
+
+Add the following to your `claude_desktop_config.json` or `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "gmpsignal": {
+      "command": "npx",
+      "args": ["-y", "@gmpsignal/mcp-server", "--suite", "flagship"],
+      "env": {
+        "APIFY_TOKEN": "<YOUR_APIFY_API_TOKEN>"
+      }
+    }
+  }
+}
+```
+
+Available `--suite` presets:
+- `flagship` *(Default — 11 top global Crypto, Quant, Prediction Markets, B2B, KYB, Cyber, VC, R&D, and Shopify Actors)*
+- `crypto` *(6 DEX Security, OrderBook Arbitrage, Wallet AML, DeFi Yield/TVL, and Prediction Market Actors)*
+- `b2b` *(4 B2B Tech-Stack & Contacts, Shopify Catalog, VC Deal-Flow, and Jobs Actors)*
+- `compliance` *(8 Global KYB/Sanctions, CISA KEV + EPSS Cyber, OpenAlex R&D, SEC EDGAR, FDA, and EU TED Actors)*
+- `regional` *(22 Seismic, Central Bank FX, Balkan Classifieds, and Regional Mobility Actors)*
+- `all` *(All 40 GMPSignal Actors)*
+
+### Option B: Direct `@apify/actors-mcp-server` Configuration
+
+Copy [`mcp/claude_desktop_config.json`](./mcp/claude_desktop_config.json) or [`mcp/cursor_mcp.json`](./mcp/cursor_mcp.json):
 
 ```json
 {
