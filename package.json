@@ -1,0 +1,25 @@
+{
+    "name": "gmpsignal-mcp-n8n-starter-kit",
+    "version": "1.1.0",
+    "description": "Official Model Context Protocol (MCP) Server, Clay.com HTTP API Recipes, n8n Workflows, and Python/Node.js SDK for GMPSignal's 40 Enterprise Apify Actors.",
+    "type": "module",
+    "main": "./packages/gmpsignal-mcp/index.mjs",
+    "bin": {
+        "gmpsignal-mcp": "./packages/gmpsignal-mcp/bin/cli.mjs"
+    },
+    "scripts": {
+        "start": "node ./packages/gmpsignal-mcp/bin/cli.mjs",
+        "list": "node ./packages/gmpsignal-mcp/bin/cli.mjs --list",
+        "print-config": "node ./packages/gmpsignal-mcp/bin/cli.mjs --print-config"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/devburaq/gmpsignal-mcp-n8n-starter-kit.git"
+    },
+    "author": "GMPSignal <https://apify.com/gmpsignal>",
+    "license": "MIT",
+    "homepage": "https://github.com/devburaq/gmpsignal-mcp-n8n-starter-kit",
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}

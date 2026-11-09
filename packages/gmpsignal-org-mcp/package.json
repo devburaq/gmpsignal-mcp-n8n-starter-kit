@@ -1,6 +1,6 @@
 {
     "name": "@gmpsignal/mcp-server",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Official @gmpsignal Model Context Protocol (MCP) Server & CLI Launcher for the 40-Actor Enterprise Data, Quantitative Crypto, Prediction Markets, B2B Enrichment, KYB/Sanctions, Cybersecurity & Regulatory Suite on Apify.",
     "type": "module",
     "main": "./index.mjs",
