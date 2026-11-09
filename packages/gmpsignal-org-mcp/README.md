@@ -16,7 +16,15 @@ Connect real-time **On-Chain Crypto & DeFi**, **Prediction Markets (Polymarket/K
 - **Interactive 40-Actor Catalog & MCP Config Builder:** [https://devburaq.github.io/gmpsignal-portal/](https://devburaq.github.io/gmpsignal-portal/)
 - **Apify Store Profile (`@gmpsignal`):** [https://apify.com/gmpsignal](https://apify.com/gmpsignal)
 - **NPM Organization Package:** [`@gmpsignal/mcp-server`](https://www.npmjs.com/package/@gmpsignal/mcp-server) (`v1.3.0`)
+- **Official MCP Registry Entry:** [`io.github.devburaq/gmpsignal-mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=gmpsignal) (`ACTIVE`)
+- **OpenAPI 3.1.0 Specs (ChatGPT Custom GPT Actions, Dify, Relevance AI):** [openapi-gpt-actions.json](https://devburaq.github.io/gmpsignal-portal/openapi-gpt-actions.json) · [openapi.json (All 40)](https://devburaq.github.io/gmpsignal-portal/openapi.json)
 - **AI / LLM Index (`llms.txt` & `llms-full.txt`):** [llms.txt](https://devburaq.github.io/gmpsignal-portal/llms.txt) · [llms-full.txt](https://devburaq.github.io/gmpsignal-portal/llms-full.txt)
+
+### One-Click IDE Installation (Cursor & VS Code Copilot)
+
+- **Cursor IDE:** `cursor://anysphere.cursor-mcp/install?name=gmpsignal&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBnbXBzaWduYWwvbWNwLXNlcnZlciIsIi0tc3VpdGUiLCJmbGFnc2hpcCJdLCJlbnYiOnsiQVBJRllfVE9LRU4iOiI8WU9VUl9BUElGWV9BUElfVE9LRU4+In19`
+- **VS Code / GitHub Copilot:** `vscode:mcp/install?%7B%22name%22%3A%22gmpsignal%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40gmpsignal%2Fmcp-server%22%2C%22--suite%22%2C%22flagship%22%5D%7D`
+- *(Or customize your exact Actor combination and click **⚡ One-Click Install in Cursor / VS Code** on [https://devburaq.github.io/gmpsignal-portal/](https://devburaq.github.io/gmpsignal-portal/))*
 
 ---
 

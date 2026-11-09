@@ -1,0 +1,2099 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "GMPSignal Enterprise Intelligence API (Complete 40-Actor Suite)",
+    "description": "Official OpenAPI 3.1.0 specification for all 40 production-grade Apify Actors built by GMPSignal (@gmpsignal) on Apify. Compatible with OpenAI Custom GPT Actions, Dify.ai, Relevance AI, Retool, Make, and Postman.",
+    "version": "1.3.0",
+    "contact": {
+      "name": "GMPSignal",
+      "url": "https://devburaq.github.io/gmpsignal-portal/"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.apify.com/v2",
+      "description": "Apify Production Cloud API v2"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Apify API Token (Authorization: Bearer <APIFY_TOKEN>)"
+      },
+      "apiKeyQuery": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "token",
+        "description": "Apify API Token passed as ?token=<APIFY_TOKEN>"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "paths": {
+    "/acts/gmpsignal~dex-token-scanner-security-auditor/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "dex_token_scanner_security_auditor",
+        "summary": "Scan DEX tokens across Solana, Ethereum, Base, Arbitrum, and BSC using DexScreener and GoPlus Security APIs to detect honeypots, mint/freeze authority, buy/sell taxes, and liquidity locks.",
+        "description": "Scan DEX tokens across Solana, Ethereum, Base, Arbitrum, and BSC using DexScreener and GoPlus Security APIs to detect honeypots, mint/freeze authority, buy/sell taxes, and liquidity locks.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "chainId": {
+                    "type": "string",
+                    "description": "Target blockchain network (solana, ethereum, base, arbitrum, bsc).",
+                    "default": "solana"
+                  },
+                  "searchQuery": {
+                    "type": "string",
+                    "description": "Token symbol, name, or contract/pair address to audit.",
+                    "default": "SOL"
+                  },
+                  "minLiquidityUsd": {
+                    "type": "number",
+                    "description": "Minimum pool liquidity in USD.",
+                    "default": 10000
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum number of audited token pairs to return.",
+                    "default": 15
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~crypto-orderbook-arbitrage-scanner/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "crypto_orderbook_arbitrage_scanner",
+        "summary": "Analyze live Level-2 order book depth, $10k/$50k/$100k execution slippage, and cross-exchange arbitrage spreads across Binance, Bybit, Kraken, Coinbase, OKX, and KuCoin.",
+        "description": "Analyze live Level-2 order book depth, $10k/$50k/$100k execution slippage, and cross-exchange arbitrage spreads across Binance, Bybit, Kraken, Coinbase, OKX, and KuCoin.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "symbols": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Trading pairs to scan (e.g., BTCUSDT, ETHUSDT, SOLUSDT).",
+                    "default": [
+                      "BTCUSDT",
+                      "ETHUSDT"
+                    ]
+                  },
+                  "exchanges": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Exchanges to compare.",
+                    "default": [
+                      "binance",
+                      "bybit",
+                      "kraken",
+                      "coinbase"
+                    ]
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum order book records to return.",
+                    "default": 20
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~multichain-wallet-aml-risk-screener/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "multichain_wallet_aml_risk_screener",
+        "summary": "Screen EVM and Solana wallet addresses for native balances, transaction velocity, mixer exposure, sanctions flags, and automated AML risk scores.",
+        "description": "Screen EVM and Solana wallet addresses for native balances, transaction velocity, mixer exposure, sanctions flags, and automated AML risk scores.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "addresses": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Wallet addresses to screen."
+                  },
+                  "chains": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Chains to query (ethereum, base, arbitrum, polygon, bsc, solana).",
+                    "default": [
+                      "ethereum"
+                    ]
+                  },
+                  "maxTransactions": {
+                    "type": "integer",
+                    "description": "Maximum recent transactions to inspect per wallet.",
+                    "default": 10
+                  }
+                },
+                "required": [
+                  "addresses"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~defi-yield-tvl-stablecoin-monitor/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "defi_yield_tvl_stablecoin_monitor",
+        "summary": "Monitor DeFi yield farming APY pools, multi-chain protocol TVL momentum, and stablecoin peg health using live DeFiLlama intelligence.",
+        "description": "Monitor DeFi yield farming APY pools, multi-chain protocol TVL momentum, and stablecoin peg health using live DeFiLlama intelligence.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mode": {
+                    "type": "string",
+                    "description": "Query mode: yield_pools, protocol_tvl, or stablecoins.",
+                    "default": "yield_pools"
+                  },
+                  "chains": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Chains to filter (Ethereum, Solana, Arbitrum, Base).",
+                    "default": [
+                      "Ethereum",
+                      "Solana"
+                    ]
+                  },
+                  "minTvlUsd": {
+                    "type": "number",
+                    "description": "Minimum pool TVL in USD.",
+                    "default": 1000000
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum records to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~prediction-markets-polymarket-kalshi-scanner/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "prediction_markets_polymarket_kalshi_scanner",
+        "summary": "Fetch real-time implied probabilities, yes/no odds, trading volume, liquidity, and arbitrage opportunities across Polymarket, Kalshi, and Manifold Markets.",
+        "description": "Fetch real-time implied probabilities, yes/no odds, trading volume, liquidity, and arbitrage opportunities across Polymarket, Kalshi, and Manifold Markets.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sources": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Prediction market venues (polymarket, kalshi, manifold).",
+                    "default": [
+                      "polymarket",
+                      "kalshi"
+                    ]
+                  },
+                  "keyword": {
+                    "type": "string",
+                    "description": "Optional keyword filter for market questions.",
+                    "default": ""
+                  },
+                  "minVolumeUsd": {
+                    "type": "number",
+                    "description": "Minimum market volume in USD.",
+                    "default": 1000
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum prediction markets to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~b2b-company-techstack-contacts-enricher/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "b2b_company_techstack_contacts_enricher",
+        "summary": "Enrich B2B company domains with decision-maker emails, phone numbers, social profiles, 38+ technology stack fingerprints, MX/SPF/DMARC security posture, and RDAP registration data.",
+        "description": "Enrich B2B company domains with decision-maker emails, phone numbers, social profiles, 38+ technology stack fingerprints, MX/SPF/DMARC security posture, and RDAP registration data.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "domains": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Company domains to enrich (e.g., stripe.com, apify.com)."
+                  },
+                  "extractContacts": {
+                    "type": "boolean",
+                    "description": "Extract emails, phones, and social links.",
+                    "default": true
+                  },
+                  "detectTechStack": {
+                    "type": "boolean",
+                    "description": "Detect frontend, analytics, CRM, and infrastructure technologies.",
+                    "default": true
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum enriched domain records to return.",
+                    "default": 10
+                  }
+                },
+                "required": [
+                  "domains"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~global-sanctions-pep-gleif-kyb-screener/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "global_sanctions_pep_gleif_kyb_screener",
+        "summary": "Screen corporate entities and individuals against GLEIF Legal Entity Identifiers (LEI), OFAC/UN/EU global sanctions lists, and PEP compliance databases.",
+        "description": "Screen corporate entities and individuals against GLEIF Legal Entity Identifiers (LEI), OFAC/UN/EU global sanctions lists, and PEP compliance databases.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "entities": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Company or individual names to screen for KYB/AML compliance."
+                  },
+                  "includeGleifLei": {
+                    "type": "boolean",
+                    "description": "Query official GLEIF LEI corporate registry.",
+                    "default": true
+                  },
+                  "includeSanctionsMatch": {
+                    "type": "boolean",
+                    "description": "Screen against global sanctions and watchlists.",
+                    "default": true
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum compliance records to return.",
+                    "default": 15
+                  }
+                },
+                "required": [
+                  "entities"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~cyber-cve-kev-epss-vulnerability-scanner/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "cyber_cve_kev_epss_vulnerability_scanner",
+        "summary": "Correlate CISA Known Exploited Vulnerabilities (KEV), FIRST.",
+        "description": "Correlate CISA Known Exploited Vulnerabilities (KEV), FIRST.org 30-day EPSS exploitation probabilities, and NVD CVSS v3 severity scores for DevSecOps prioritization.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mode": {
+                    "type": "string",
+                    "description": "Scan mode: cisa_kev or specific_cves.",
+                    "default": "cisa_kev"
+                  },
+                  "vendorFilter": {
+                    "type": "string",
+                    "description": "Optional vendor or product filter (e.g., Microsoft, Cisco, Linux).",
+                    "default": ""
+                  },
+                  "minEpssScore": {
+                    "type": "number",
+                    "description": "Minimum 30-day EPSS exploitation probability (0.0 to 1.0).",
+                    "default": 0.05
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum CVE records to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~startup-vc-dealflow-yc-github-radar/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "startup_vc_dealflow_yc_github_radar",
+        "summary": "Discover high-traction startups and open-source developer tools across Y Combinator (YC), GitHub Trending repositories, and Hacker News launches.",
+        "description": "Discover high-traction startups and open-source developer tools across Y Combinator (YC), GitHub Trending repositories, and Hacker News launches.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sources": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Deal-flow sources (yc_companies, github_trending, hackernews_launch).",
+                    "default": [
+                      "yc_companies",
+                      "github_trending",
+                      "hackernews_launch"
+                    ]
+                  },
+                  "keyword": {
+                    "type": "string",
+                    "description": "Optional industry or technology keyword filter.",
+                    "default": ""
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum startup/repository records to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~academic-patent-research-citation-intelligence/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "academic_patent_research_citation_intelligence",
+        "summary": "Search peer-reviewed scientific papers, citation velocity, DOI metadata, and open-access PDFs across OpenAlex, Semantic Scholar, Crossref, and arXiv.",
+        "description": "Search peer-reviewed scientific papers, citation velocity, DOI metadata, and open-access PDFs across OpenAlex, Semantic Scholar, Crossref, and arXiv.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "Scientific research topic, keyword, or author query.",
+                    "default": "autonomous AI agents"
+                  },
+                  "sources": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Academic databases (openalex, semantic_scholar, arxiv, crossref).",
+                    "default": [
+                      "openalex",
+                      "semantic_scholar",
+                      "arxiv"
+                    ]
+                  },
+                  "minYear": {
+                    "type": "integer",
+                    "description": "Minimum publication year.",
+                    "default": 2024
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum papers to return.",
+                    "default": 20
+                  }
+                },
+                "required": [
+                  "query"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~shopify-global-store-products-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "shopify_global_store_products_scraper",
+        "summary": "Extract complete product catalogs, SKU variants, stock availability, compare-at prices, and discount percentages from any global Shopify store domain.",
+        "description": "Extract complete product catalogs, SKU variants, stock availability, compare-at prices, and discount percentages from any global Shopify store domain.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "stores": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Shopify store domains (e.g., allbirds.com, kyliecosmetics.com).",
+                    "default": [
+                      "allbirds.com",
+                      "kyliecosmetics.com"
+                    ]
+                  },
+                  "searchKeyword": {
+                    "type": "string",
+                    "description": "Optional keyword filter for product title or tags.",
+                    "default": ""
+                  },
+                  "onlyInStock": {
+                    "type": "boolean",
+                    "description": "Return only in-stock products.",
+                    "default": false
+                  },
+                  "maxProductsPerStore": {
+                    "type": "integer",
+                    "description": "Maximum products per store.",
+                    "default": 15
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum total products to return.",
+                    "default": 30
+                  }
+                },
+                "required": [
+                  "stores"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~global-product-recalls-monitor/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "global_product_recalls_monitor",
+        "summary": "Monitor consumer product safety recalls across US CPSC, USDA FSIS, and European Safety Gate (RAPEX) alerts.",
+        "description": "Monitor consumer product safety recalls across US CPSC, USDA FSIS, and European Safety Gate (RAPEX) alerts.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sources": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Recall authorities (cpsc, fsis, eu).",
+                    "default": [
+                      "cpsc",
+                      "eu"
+                    ]
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum recall alerts to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~earthquake-monitor-usgs-emsc-afad/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "earthquake_monitor_usgs_emsc_afad",
+        "summary": "Track cross-verified global and regional seismic events in real time across USGS, EMSC, and AFAD networks.",
+        "description": "Track cross-verified global and regional seismic events in real time across USGS, EMSC, and AFAD networks.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "minMagnitude": {
+                    "type": "string",
+                    "description": "Minimum Richter magnitude threshold (e.g., \"3.0\", \"4.5\").",
+                    "default": "4.5"
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum seismic events to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~eu-ted-public-tenders-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "eu_ted_public_tenders_scraper",
+        "summary": "Search European Union Tenders Electronic Daily (TED) public procurement notices, CPV codes, contracting authorities, and official PDF/HTML links.",
+        "description": "Search European Union Tenders Electronic Daily (TED) public procurement notices, CPV codes, contracting authorities, and official PDF/HTML links.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "searchQuery": {
+                    "type": "string",
+                    "description": "Procurement keyword or CPV topic.",
+                    "default": "software"
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum tender notices to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~fda-warning-letters-compliance-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "fda_warning_letters_compliance_scraper",
+        "summary": "Monitor US FDA pharmaceutical, medical device, biologics, and food GMP inspection warning letters and violation categories.",
+        "description": "Monitor US FDA pharmaceutical, medical device, biologics, and food GMP inspection warning letters and violation categories.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "searchKeyword": {
+                    "type": "string",
+                    "description": "Optional company name or violation keyword.",
+                    "default": ""
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum warning letters to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~pazar3-merrjep-balkan-classifieds-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "pazar3_merrjep_balkan_classifieds_scraper",
+        "summary": "Extract real estate, vehicles, and marketplace listings across North Macedonia (Pazar3.",
+        "description": "Extract real estate, vehicles, and marketplace listings across North Macedonia (Pazar3.mk), Kosovo (MerrJep.com), and Albania (MerrJep.al).",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "string",
+                    "description": "Target country code (mk, xk, al).",
+                    "default": "mk"
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": "Category slug (cars, real-estate, electronics).",
+                    "default": "cars"
+                  },
+                  "maxItems": {
+                    "type": "integer",
+                    "description": "Maximum classified listings to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~turkey-real-estate-listings-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "turkey_real_estate_listings_scraper",
+        "summary": "Extract residential and commercial real estate listings, square-meter pricing, and agent details across regional cities.",
+        "description": "Extract residential and commercial real estate listings, square-meter pricing, and agent details across regional cities.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "city": {
+                    "type": "string",
+                    "description": "Target city slug (e.g., istanbul, ankara, izmir).",
+                    "default": "istanbul"
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": "Listing type category slug.",
+                    "default": "sale"
+                  },
+                  "maxItems": {
+                    "type": "integer",
+                    "description": "Maximum property listings to return.",
+                    "default": 20
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~sec-edgar-filings-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "sec_edgar_filings_scraper",
+        "summary": "Fetch official US SEC EDGAR corporate filings (10-K, 10-Q, 8-K, Form 4 insider transactions) by ticker, CIK, or form type.",
+        "description": "Fetch official US SEC EDGAR corporate filings (10-K, 10-Q, 8-K, Form 4 insider transactions) by ticker, CIK, or form type.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tickers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Stock tickers or CIK codes (e.g., AAPL, NVDA, MSFT).",
+                    "default": [
+                      "AAPL",
+                      "NVDA"
+                    ]
+                  },
+                  "forms": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "SEC form types (10-K, 10-Q, 8-K, 4).",
+                    "default": [
+                      "10-K",
+                      "10-Q",
+                      "8-K"
+                    ]
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum filings to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~german-jobs-arbeitsagentur-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "german_jobs_arbeitsagentur_scraper",
+        "summary": "Search official German Federal Employment Agency (Bundesagentur fuer Arbeit) job vacancies, employers, and locations.",
+        "description": "Search official German Federal Employment Agency (Bundesagentur fuer Arbeit) job vacancies, employers, and locations.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "searchQuery": {
+                    "type": "string",
+                    "description": "Job title, skill, or profession keyword.",
+                    "default": "Software Engineer"
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": "City or region in Germany (e.g., Berlin, Munich).",
+                    "default": "Berlin"
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum job listings to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~fda-recalls-enforcement-monitor/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "fda_recalls_enforcement_monitor",
+        "summary": "Query official US openFDA drug, medical device, and food recall enforcement reports.",
+        "description": "Query official US openFDA drug, medical device, and food recall enforcement reports.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "category": {
+                    "type": "string",
+                    "description": "Recall category (drug, device, food).",
+                    "default": "drug"
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum recall reports to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~njuskalo-croatia-classifieds-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "njuskalo_croatia_classifieds_scraper",
+        "summary": "Extract marketplace, automotive, and real estate listings from Njuskalo.",
+        "description": "Extract marketplace, automotive, and real estate listings from Njuskalo.hr in Croatia.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "Search keyword on Njuskalo.hr.",
+                    "default": "iphone"
+                  },
+                  "maxItems": {
+                    "type": "integer",
+                    "description": "Maximum listings to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~bolha-slovenia-classifieds-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "bolha_slovenia_classifieds_scraper",
+        "summary": "Extract marketplace, automotive, and real estate listings from Bolha.",
+        "description": "Extract marketplace, automotive, and real estate listings from Bolha.com in Slovenia.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "Search keyword on Bolha.com.",
+                    "default": "macbook"
+                  },
+                  "maxItems": {
+                    "type": "integer",
+                    "description": "Maximum listings to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~olx-bosnia-marketplace-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "olx_bosnia_marketplace_scraper",
+        "summary": "Extract vehicles, real estate, and consumer goods listings from OLX.",
+        "description": "Extract vehicles, real estate, and consumer goods listings from OLX.ba in Bosnia and Herzegovina.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "Search keyword on OLX.ba.",
+                    "default": "golf"
+                  },
+                  "maxItems": {
+                    "type": "integer",
+                    "description": "Maximum listings to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~turkey-crypto-exchange-prices-monitor/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "turkey_crypto_exchange_prices_monitor",
+        "summary": "Monitor TRY and USDT cryptocurrency trading pairs, 24h volume, and order book spreads across Turkish crypto exchanges (BtcTurk, Paribu).",
+        "description": "Monitor TRY and USDT cryptocurrency trading pairs, 24h volume, and order book spreads across Turkish crypto exchanges (BtcTurk, Paribu).",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "quoteCurrency": {
+                    "type": "string",
+                    "description": "Quote currency filter (TRY, USDT, ALL).",
+                    "default": "TRY"
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum ticker records to return.",
+                    "default": 50
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~halooglasi-serbia-classifieds-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "halooglasi_serbia_classifieds_scraper",
+        "summary": "Extract real estate, apartments, and automotive classifieds from HaloOglasi.",
+        "description": "Extract real estate, apartments, and automotive classifieds from HaloOglasi.com in Serbia.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "category": {
+                    "type": "string",
+                    "description": "Category path or keyword on HaloOglasi.",
+                    "default": "nekretnine"
+                  },
+                  "maxItems": {
+                    "type": "integer",
+                    "description": "Maximum listings to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~kupujemprodajem-serbia-marketplace-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "kupujemprodajem_serbia_marketplace_scraper",
+        "summary": "Search and extract product listings, prices, and seller details from KupujemProdajem.",
+        "description": "Search and extract product listings, prices, and seller details from KupujemProdajem.com in Serbia.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keywords": {
+                    "type": "string",
+                    "description": "Search keyword on KupujemProdajem.",
+                    "default": "iphone"
+                  },
+                  "maxItems": {
+                    "type": "integer",
+                    "description": "Maximum listings to return.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~turkey-gold-and-bank-bullion-prices/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "turkey_gold_and_bank_bullion_prices",
+        "summary": "Fetch live Turkish gold prices (Gram, Quarter, Half, Republic, Ons) and compare buy/sell spreads across 35 commercial banks.",
+        "description": "Fetch live Turkish gold prices (Gram, Quarter, Half, Republic, Ons) and compare buy/sell spreads across 35 commercial banks.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "includeBanks": {
+                    "type": "boolean",
+                    "description": "Include 35 bank gold buy/sell spread comparisons.",
+                    "default": true
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~turkey-weather-mgm-official-forecast/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "turkey_weather_mgm_official_forecast",
+        "summary": "Retrieve official Turkish State Meteorological Service (MGM) current weather observations and 5-day forecasts across 81 provinces.",
+        "description": "Retrieve official Turkish State Meteorological Service (MGM) current weather observations and 5-day forecasts across 81 provinces.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provinces": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "List of Turkish provinces (e.g., istanbul, ankara, izmir, antalya).",
+                    "default": [
+                      "istanbul",
+                      "ankara",
+                      "izmir"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~europe-mediterranean-earthquakes-emsc/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "europe_mediterranean_earthquakes_emsc",
+        "summary": "Fetch real-time European and Mediterranean seismic events, epicenter coordinates, depths, and magnitudes from EMSC.",
+        "description": "Fetch real-time European and Mediterranean seismic events, epicenter coordinates, depths, and magnitudes from EMSC.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "minMagnitude": {
+                    "type": "number",
+                    "description": "Minimum earthquake magnitude.",
+                    "default": 2.5
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum seismic events to return.",
+                    "default": 30
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~islamic-prayer-times-worldwide-calendars/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "islamic_prayer_times_worldwide_calendars",
+        "summary": "Calculate daily and monthly astronomical Islamic prayer times (Fajr, Sunrise, Dhuhr, Asr, Maghrib, Isha) and Qibla direction for any global city.",
+        "description": "Calculate daily and monthly astronomical Islamic prayer times (Fajr, Sunrise, Dhuhr, Asr, Maghrib, Isha) and Qibla direction for any global city.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "city": {
+                    "type": "string",
+                    "description": "Target city name (e.g., Istanbul, London, Mecca).",
+                    "default": "Istanbul"
+                  },
+                  "country": {
+                    "type": "string",
+                    "description": "Target country name.",
+                    "default": "Turkey"
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~turkey-on-duty-pharmacies-directory/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "turkey_on_duty_pharmacies_directory",
+        "summary": "Find daily emergency on-duty pharmacies with addresses, phone numbers, and map coordinates across provinces and districts.",
+        "description": "Find daily emergency on-duty pharmacies with addresses, phone numbers, and map coordinates across provinces and districts.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "city": {
+                    "type": "string",
+                    "description": "Province name (e.g., istanbul, ankara, izmir).",
+                    "default": "istanbul"
+                  },
+                  "district": {
+                    "type": "string",
+                    "description": "Optional district filter (e.g., kadikoy, besiktas).",
+                    "default": ""
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~tcmb-official-central-bank-fx-rates/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "tcmb_official_central_bank_fx_rates",
+        "summary": "Fetch official Central Bank (TCMB) daily foreign exchange buying, selling, bank-note, and cross rates.",
+        "description": "Fetch official Central Bank (TCMB) daily foreign exchange buying, selling, bank-note, and cross rates.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "currencies": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "ISO currency codes (e.g., USD, EUR, GBP, CHF, JPY).",
+                    "default": [
+                      "USD",
+                      "EUR",
+                      "GBP"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~turkey-fuel-prices-81-provinces-daily/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "turkey_fuel_prices_81_provinces_daily",
+        "summary": "Retrieve daily retail gasoline, diesel, and autogas (LPG) pump prices across all 81 provinces.",
+        "description": "Retrieve daily retail gasoline, diesel, and autogas (LPG) pump prices across all 81 provinces.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provinces": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Provinces to query (e.g., istanbul, ankara, izmir).",
+                    "default": [
+                      "istanbul",
+                      "ankara",
+                      "izmir"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~turkey-car-rental-prices-index/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "turkey_car_rental_prices_index",
+        "summary": "Compare daily car rental fleet prices, vehicle classes, transmission types, and supplier ratings across airports and cities.",
+        "description": "Compare daily car rental fleet prices, vehicle classes, transmission types, and supplier ratings across airports and cities.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "locations": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Pickup locations or airports (e.g., istanbul, antalya).",
+                    "default": [
+                      "istanbul"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~turkey-hotels-explorer-ratings-amenities/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "turkey_hotels_explorer_ratings_amenities",
+        "summary": "Extract hotel nightly rates, guest review scores, star ratings, board types, and amenities across Turkish destinations.",
+        "description": "Extract hotel nightly rates, guest review scores, star ratings, board types, and amenities across Turkish destinations.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cities": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Target destination cities (e.g., istanbul, antalya, bodrum).",
+                    "default": [
+                      "istanbul"
+                    ]
+                  },
+                  "maxHotelsPerCity": {
+                    "type": "integer",
+                    "description": "Maximum hotels to return per city.",
+                    "default": 25
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~turkey-earthquakes-afad-official-feed/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "turkey_earthquakes_afad_official_feed",
+        "summary": "Retrieve official AFAD (Disaster and Emergency Management Authority) real-time earthquake records across Turkey and neighboring regions.",
+        "description": "Retrieve official AFAD (Disaster and Emergency Management Authority) real-time earthquake records across Turkey and neighboring regions.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "minMagnitude": {
+                    "type": "number",
+                    "description": "Minimum earthquake magnitude filter.",
+                    "default": 2
+                  },
+                  "maxResults": {
+                    "type": "integer",
+                    "description": "Maximum earthquake events to return.",
+                    "default": 30
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~turkey-domestic-flight-prices-aggregator/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "turkey_domestic_flight_prices_aggregator",
+        "summary": "Compare domestic and regional airline ticket fares, departure/arrival times, baggage allowances, and carriers (THY, Pegasus, AJet).",
+        "description": "Compare domestic and regional airline ticket fares, departure/arrival times, baggage allowances, and carriers (THY, Pegasus, AJet).",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "origin": {
+                    "type": "string",
+                    "description": "Origin city or airport slug (e.g., istanbul).",
+                    "default": "istanbul"
+                  },
+                  "destination": {
+                    "type": "string",
+                    "description": "Destination city or airport slug (e.g., izmir, antalya).",
+                    "default": "izmir"
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~social-community-forum-entries-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "social_community_forum_entries_scraper",
+        "summary": "Extract trending discussion topics, user entries, favorite counts, and community sentiment data.",
+        "description": "Extract trending discussion topics, user entries, favorite counts, and community sentiment data.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "includeTrending": {
+                    "type": "boolean",
+                    "description": "Scrape current trending topics.",
+                    "default": true
+                  },
+                  "maxEntriesPerTopic": {
+                    "type": "integer",
+                    "description": "Maximum entries per topic.",
+                    "default": 20
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~turkey-greek-islands-ferry-schedules/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "turkey_greek_islands_ferry_schedules",
+        "summary": "Fetch maritime ferry timetables, operators, sailing durations, and ticket prices across Aegean, Marmara, and Greek Island routes.",
+        "description": "Fetch maritime ferry timetables, operators, sailing durations, and ticket prices across Aegean, Marmara, and Greek Island routes.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "routes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Route slugs (e.g., yenikapi-mudanya, bodrum-kos).",
+                    "default": [
+                      "yenikapi-mudanya"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/gmpsignal~turkey-bus-routes-and-ticket-prices/run-sync-get-dataset-items": {
+      "post": {
+        "operationId": "turkey_bus_routes_and_ticket_prices",
+        "summary": "Extract intercity bus schedules, coach operators, departure/arrival terminals, seat configurations, and TRY ticket prices across Turkey.",
+        "description": "Extract intercity bus schedules, coach operators, departure/arrival terminals, seat configurations, and TRY ticket prices across Turkey.",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "routes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Intercity route pairs (e.g., istanbul-ankara, izmir-antalya).",
+                    "default": [
+                      "istanbul-ankara"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Array of structured JSON dataset items returned by the Apify Actor execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
