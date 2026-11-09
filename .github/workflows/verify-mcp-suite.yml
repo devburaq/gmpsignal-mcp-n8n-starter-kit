@@ -34,12 +34,16 @@ jobs:
               "n8n-workflows/2-b2b-domain-techstack-crm-enrichment.json",
               "n8n-workflows/3-polymarket-kalshi-prediction-odds-monitor.json",
               "n8n-workflows/4-cisa-kev-epss-secops-slack-alert.json",
+              "openapi/openapi.json",
+              "openapi/openapi-gpt-actions.json",
+              "postman/gmpsignal-40-actors.postman_collection.json",
+              "server.json",
               "packages/gmpsignal-mcp/package.json"
             ];
             for (const f of files) {
               JSON.parse(fs.readFileSync(f, "utf8"));
             }
-            console.log("All 10 JSON manifests validated.");
+            console.log("All 14 JSON manifests validated.");
           '
 
       - name: Verify Node.js & Python SDK Examples

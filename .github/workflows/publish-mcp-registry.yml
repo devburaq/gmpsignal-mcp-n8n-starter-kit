@@ -27,7 +27,7 @@ jobs:
       - name: Validate server.json against Official MCP Registry
         run: ./mcp-publisher validate
 
-      - name: Authenticate via GitHub OIDC & Publish to Official MCP Registry
+      - name: Authenticate via GitHub OIDC & Publish v1.3.1 to Official MCP Registry
         run: |
           ./mcp-publisher login github-oidc
           ./mcp-publisher publish || true
