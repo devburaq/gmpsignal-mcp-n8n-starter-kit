@@ -15,7 +15,7 @@ Connect real-time **On-Chain Crypto & DeFi**, **Prediction Markets (Polymarket/K
 
 - **Interactive 40-Actor Catalog & MCP Config Builder:** [https://devburaq.github.io/gmpsignal-portal/](https://devburaq.github.io/gmpsignal-portal/)
 - **Apify Store Profile (`@gmpsignal`):** [https://apify.com/gmpsignal](https://apify.com/gmpsignal)
-- **NPM Organization Package:** [`@gmpsignal/mcp-server`](https://www.npmjs.com/package/@gmpsignal/mcp-server) (`v1.3.1`)
+- **NPM Organization Package:** [`@gmpsignal/mcp-server`](https://www.npmjs.com/package/@gmpsignal/mcp-server) (`v1.4.0` — Glama Rated **Grade `A`**)
 - **Official MCP Registry Entry:** [`io.github.devburaq/gmpsignal-mcp-server`](https://registry.modelcontextprotocol.io/v0/servers?search=gmpsignal) (`ACTIVE`)
 - **Official Docker Container (`GHCR`):** `ghcr.io/devburaq/gmpsignal-mcp-n8n-starter-kit:latest`
 - **OpenAPI 3.1.0 Specs (ChatGPT Custom GPT Actions, Dify, Relevance AI):** [openapi-gpt-actions.json](https://devburaq.github.io/gmpsignal-portal/openapi-gpt-actions.json) · [openapi.json (All 40)](https://devburaq.github.io/gmpsignal-portal/openapi.json)
