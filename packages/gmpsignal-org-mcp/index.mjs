@@ -1,11 +1,11 @@
 /**
  * @file index.mjs
- * @description Programmatic SDK and Suite Registry for the GMPSignal 40-Actor Enterprise
+ * @description Programmatic SDK and Suite Registry for the GMPSignal 50-Actor Enterprise
  * Data & Model Context Protocol (MCP) Intelligence Suite on Apify.
  */
 
 /**
- * Curated Actor suites organized by vertical use case.
+ * Curated Actor suites organized by vertical use case (50 Total Production Actors).
  * @type {Record<string, Array<string>>}
  */
 export const GMPSIGNAL_SUITES = {
@@ -20,7 +20,17 @@ export const GMPSIGNAL_SUITES = {
         'gmpsignal/cyber-cve-kev-epss-vulnerability-scanner',
         'gmpsignal/startup-vc-dealflow-yc-github-radar',
         'gmpsignal/academic-patent-research-citation-intelligence',
-        'gmpsignal/shopify-global-store-products-scraper'
+        'gmpsignal/shopify-global-store-products-scraper',
+        'gmpsignal/global-trademark-brand-ip-monitor',
+        'gmpsignal/ai-model-mcp-package-supply-chain-radar',
+        'gmpsignal/us-uk-gov-contracts-procurement-scraper',
+        'gmpsignal/clinical-trials-fda-drug-pipeline-tracker',
+        'gmpsignal/global-supply-chain-port-aviation-disruption-monitor',
+        'gmpsignal/global-central-bank-macro-rates-inflation-tracker',
+        'gmpsignal/b2b-email-deliverability-dmarc-spf-bimi-auditor',
+        'gmpsignal/hackernews-devto-tech-launch-sentiment-radar',
+        'gmpsignal/sec-13f-institutional-whale-insider-tracker',
+        'gmpsignal/wikidata-wikipedia-corporate-knowledge-graph-enricher'
     ],
     crypto: [
         'gmpsignal/dex-token-scanner-security-auditor',
@@ -28,13 +38,19 @@ export const GMPSIGNAL_SUITES = {
         'gmpsignal/multichain-wallet-aml-risk-screener',
         'gmpsignal/defi-yield-tvl-stablecoin-monitor',
         'gmpsignal/prediction-markets-polymarket-kalshi-scanner',
-        'gmpsignal/turkey-crypto-exchange-prices'
+        'gmpsignal/turkey-crypto-exchange-prices',
+        'gmpsignal/global-central-bank-macro-rates-inflation-tracker',
+        'gmpsignal/sec-13f-institutional-whale-insider-tracker'
     ],
     b2b: [
         'gmpsignal/b2b-company-techstack-contacts-enricher',
         'gmpsignal/shopify-global-store-products-scraper',
         'gmpsignal/startup-vc-dealflow-yc-github-radar',
-        'gmpsignal/german-jobs-scraper'
+        'gmpsignal/german-jobs-scraper',
+        'gmpsignal/b2b-email-deliverability-dmarc-spf-bimi-auditor',
+        'gmpsignal/hackernews-devto-tech-launch-sentiment-radar',
+        'gmpsignal/wikidata-wikipedia-corporate-knowledge-graph-enricher',
+        'gmpsignal/ai-model-mcp-package-supply-chain-radar'
     ],
     compliance: [
         'gmpsignal/global-sanctions-pep-gleif-kyb-screener',
@@ -44,7 +60,11 @@ export const GMPSIGNAL_SUITES = {
         'gmpsignal/fda-warning-letters-scraper',
         'gmpsignal/fda-recalls-enforcement',
         'gmpsignal/eu-ted-tenders-scraper',
-        'gmpsignal/global-product-recalls'
+        'gmpsignal/global-product-recalls',
+        'gmpsignal/global-trademark-brand-ip-monitor',
+        'gmpsignal/us-uk-gov-contracts-procurement-scraper',
+        'gmpsignal/clinical-trials-fda-drug-pipeline-tracker',
+        'gmpsignal/global-supply-chain-port-aviation-disruption-monitor'
     ],
     regional: [
         'gmpsignal/earthquake-monitor-usgs-emsc-afad',
@@ -100,10 +120,12 @@ export function resolveActorsForSuite(suiteName = 'flagship') {
  * @returns {Object} JSON-serializable MCP configuration object.
  */
 export function buildMcpServerConfig(suiteName = 'flagship', apiTokenPlaceholder = '<YOUR_APIFY_API_TOKEN>') {
-    const actors = resolveActorsForSuite(suiteName);
+    const sc = typeof suiteName === 'object' ? (suiteName.suite || 'flagship') : suiteName;
+    const tok = typeof suiteName === 'object' ? (suiteName.apifyToken || apiTokenPlaceholder) : apiTokenPlaceholder;
+    const actors = resolveActorsForSuite(sc);
     return {
         mcpServers: {
-            [`gmpsignal-${suiteName}`]: {
+            [`gmpsignal-${sc}`]: {
                 command: 'npx',
                 args: [
                     '-y',
@@ -112,7 +134,7 @@ export function buildMcpServerConfig(suiteName = 'flagship', apiTokenPlaceholder
                     actors.join(',')
                 ],
                 env: {
-                    APIFY_TOKEN: apiTokenPlaceholder
+                    APIFY_TOKEN: tok
                 }
             }
         }
