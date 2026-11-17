@@ -25,21 +25,12 @@
         "type": "http",
         "scheme": "bearer",
         "description": "Apify API Token (Authorization: Bearer <APIFY_TOKEN>)"
-      },
-      "apiKeyQuery": {
-        "type": "apiKey",
-        "in": "query",
-        "name": "token",
-        "description": "Apify API Token passed as ?token=<APIFY_TOKEN>"
       }
     }
   },
   "security": [
     {
       "bearerAuth": []
-    },
-    {
-      "apiKeyQuery": []
     }
   ],
   "paths": {
