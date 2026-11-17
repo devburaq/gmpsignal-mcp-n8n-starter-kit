@@ -8,9 +8,10 @@
             "name": "GMPSignal B2B Company Tech-Stack, Contacts & Social Enricher",
             "actorSlug": "gmpsignal~b2b-company-techstack-contacts-enricher",
             "method": "POST",
-            "endpoint": "https://api.apify.com/v2/acts/gmpsignal~b2b-company-techstack-contacts-enricher/run-sync-get-dataset-items?token={{APIFY_API_TOKEN}}",
+            "endpoint": "https://api.apify.com/v2/acts/gmpsignal~b2b-company-techstack-contacts-enricher/run-sync-get-dataset-items",
             "headers": {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {{APIFY_API_TOKEN}}"
             },
             "bodyTemplate": {
                 "domains": [
@@ -36,9 +37,10 @@
             "name": "GMPSignal Global Sanctions, PEP & GLEIF LEI KYB Screener",
             "actorSlug": "gmpsignal~global-sanctions-pep-gleif-kyb-screener",
             "method": "POST",
-            "endpoint": "https://api.apify.com/v2/acts/gmpsignal~global-sanctions-pep-gleif-kyb-screener/run-sync-get-dataset-items?token={{APIFY_API_TOKEN}}",
+            "endpoint": "https://api.apify.com/v2/acts/gmpsignal~global-sanctions-pep-gleif-kyb-screener/run-sync-get-dataset-items",
             "headers": {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {{APIFY_API_TOKEN}}"
             },
             "bodyTemplate": {
                 "entities": [
@@ -61,9 +63,10 @@
             "name": "GMPSignal Shopify Store Products, Variants & Discount Auditor",
             "actorSlug": "gmpsignal~shopify-global-store-products-scraper",
             "method": "POST",
-            "endpoint": "https://api.apify.com/v2/acts/gmpsignal~shopify-global-store-products-scraper/run-sync-get-dataset-items?token={{APIFY_API_TOKEN}}",
+            "endpoint": "https://api.apify.com/v2/acts/gmpsignal~shopify-global-store-products-scraper/run-sync-get-dataset-items",
             "headers": {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {{APIFY_API_TOKEN}}"
             },
             "bodyTemplate": {
                 "stores": [
@@ -86,9 +89,10 @@
             "name": "GMPSignal Startup & VC Deal-Flow Radar (YC + GitHub + HN)",
             "actorSlug": "gmpsignal~startup-vc-dealflow-yc-github-radar",
             "method": "POST",
-            "endpoint": "https://api.apify.com/v2/acts/gmpsignal~startup-vc-dealflow-yc-github-radar/run-sync-get-dataset-items?token={{APIFY_API_TOKEN}}",
+            "endpoint": "https://api.apify.com/v2/acts/gmpsignal~startup-vc-dealflow-yc-github-radar/run-sync-get-dataset-items",
             "headers": {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {{APIFY_API_TOKEN}}"
             },
             "bodyTemplate": {
                 "sources": [
