@@ -1,0 +1,43 @@
+name: Publish npm packages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: publish-npm
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.release.tag_name, 'v')
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [packages/gmpsignal-mcp, packages/gmpsignal-org-mcp]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - name: Use an npm CLI that supports trusted publishing (OIDC)
+        run: npm install -g npm@latest
+      - name: Syntax check
+        working-directory: ${{ matrix.package }}
+        run: node --check bin/cli.mjs && node --check index.mjs
+      - name: Stage with npm trusted publishing (maintainer approves with 2FA; skip if published)
+        working-directory: ${{ matrix.package }}
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "$NAME@$VERSION already published"; exit 0
+          fi
+          npm stage publish --access public --provenance
