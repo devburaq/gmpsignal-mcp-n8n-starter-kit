@@ -814,12 +814,14 @@ async function executeApifyActor(actorSlug, inputPayload = {}) {
     }
 
     const normalizedSlug = actorSlug.replace('/', '~');
-    const endpoint = `https://api.apify.com/v2/acts/${encodeURIComponent(normalizedSlug)}/run-sync-get-dataset-items?token=${encodeURIComponent(token)}`;
+    const endpoint = `https://api.apify.com/v2/acts/${encodeURIComponent(normalizedSlug)}/run-sync-get-dataset-items`;
     const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            // Token in a header, not the URL, so it never lands in proxy/server access logs.
+            Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(inputPayload || {})
     });
@@ -842,9 +844,10 @@ async function executeApifyActor(actorSlug, inputPayload = {}) {
  */
 async function fetchDatasetItemsPage(datasetId, offset = 0, limit = 25) {
     const token = process.env.APIFY_TOKEN || '';
-    const tokenParam = token ? `&token=${encodeURIComponent(token)}` : '';
-    const url = `https://api.apify.com/v2/datasets/${encodeURIComponent(datasetId)}/items?clean=true&offset=${Number(offset) || 0}&limit=${Number(limit) || 25}${tokenParam}`;
-    const response = await fetch(url, { headers: { Accept: 'application/json' } });
+    const url = `https://api.apify.com/v2/datasets/${encodeURIComponent(datasetId)}/items?clean=true&offset=${Number(offset) || 0}&limit=${Number(limit) || 25}`;
+    const headers = { Accept: 'application/json' };
+    if (token) headers.Authorization = `Bearer ${token}`;
+    const response = await fetch(url, { headers });
     if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Apify Dataset API HTTP ${response.status}: ${errorText.slice(0, 300)}`);
@@ -922,7 +925,7 @@ function startStdioMcpServer() {
                     },
                     serverInfo: {
                         name: 'gmpsignal-mcp',
-                        version: '1.4.0'
+                        version: '1.4.1'
                     }
                 });
                 return;
@@ -1104,7 +1107,7 @@ function main() {
     }
 
     if (listSuites) {
-        console.log('GMPSignal MCP Server & CLI Launcher (v1.4.0)\n');
+        console.log('GMPSignal MCP Server & CLI Launcher (v1.4.1)\n');
         console.log('Available Suites (--suite <name>):');
         for (const [key, value] of Object.entries(GMPSIGNAL_SUITES)) {
             console.log(`  - ${key.padEnd(12)} (${value.actors.length} Actors): ${value.title}`);
@@ -1120,7 +1123,8 @@ function main() {
     if (printConfig) {
         const config = buildMcpServerConfig({
             suite,
-            apifyToken: process.env.APIFY_TOKEN || '<YOUR_APIFY_API_TOKEN>'
+            // Never echo the real token to stdout (shell history, CI logs, screen shares).
+            apifyToken: '<YOUR_APIFY_API_TOKEN>'
         });
         console.log(JSON.stringify(config, null, 2));
         process.exit(0);
