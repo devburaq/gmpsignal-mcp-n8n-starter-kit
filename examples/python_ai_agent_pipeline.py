@@ -30,8 +30,7 @@ def run_gmpsignal_actor(actor_slug: str, input_payload: Dict[str, Any], api_toke
         raise ValueError("Missing Apify API token. Set APIFY_TOKEN environment variable or pass api_token.")
 
     encoded_slug = urllib.parse.quote(actor_slug, safe="~")
-    encoded_token = urllib.parse.quote(token, safe="")
-    url = f"https://api.apify.com/v2/acts/{encoded_slug}/run-sync-get-dataset-items?token={encoded_token}"
+    url = f"https://api.apify.com/v2/acts/{encoded_slug}/run-sync-get-dataset-items"
 
     body_bytes = json.dumps(input_payload).encode("utf-8")
     request = urllib.request.Request(
@@ -40,6 +39,7 @@ def run_gmpsignal_actor(actor_slug: str, input_payload: Dict[str, Any], api_toke
         headers={
             "Content-Type": "application/json",
             "Accept": "application/json",
+            "Authorization": f"Bearer {token}",
             "User-Agent": "GMPSignal-Python-Agent-SDK/1.0",
         },
         method="POST",
