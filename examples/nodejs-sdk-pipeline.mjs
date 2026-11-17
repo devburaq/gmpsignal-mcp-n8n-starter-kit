@@ -20,12 +20,13 @@ async function runGmpsignalActor(actorSlug, inputPayload) {
         throw new Error('Missing APIFY_TOKEN environment variable. Export APIFY_TOKEN before running.');
     }
 
-    const endpoint = `https://api.apify.com/v2/acts/${encodeURIComponent(actorSlug)}/run-sync-get-dataset-items?token=${encodeURIComponent(APIFY_API_TOKEN)}`;
+    const endpoint = `https://api.apify.com/v2/acts/${encodeURIComponent(actorSlug)}/run-sync-get-dataset-items`;
     const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${APIFY_API_TOKEN}`
         },
         body: JSON.stringify(inputPayload)
     });
