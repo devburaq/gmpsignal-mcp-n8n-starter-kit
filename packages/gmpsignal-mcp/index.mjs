@@ -121,7 +121,8 @@ export function resolveActorsForSuite(suiteName = 'flagship') {
  */
 export function buildMcpServerConfig(suiteName = 'flagship', apiTokenPlaceholder = '<YOUR_APIFY_API_TOKEN>') {
     const sc = typeof suiteName === 'object' ? (suiteName.suite || 'flagship') : suiteName;
-    const tok = typeof suiteName === 'object' ? (suiteName.apifyToken || apiTokenPlaceholder) : apiTokenPlaceholder;
+    // Config snippets are meant to be shared/pasted: always emit a placeholder, never a real token.
+    const tok = apiTokenPlaceholder;
     const actors = resolveActorsForSuite(sc);
     return {
         mcpServers: {
